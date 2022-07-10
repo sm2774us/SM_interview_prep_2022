@@ -174,11 +174,24 @@ public class ArraysAndStringsSolutions {
      * Exercise 1.4: Given a 2D matrix, write a function to print the values
      * going back and forth across each row
      *
-     * Time Complexity:
-     * Space Complexity:
+     * Time Complexity: O(arr.length * arr[0].length)
+     * Space Complexity: O(1)
      */
     public static void printBackAndForth(int[][] arr) {
-        // INSERT YOUR SOLUTION HERE
+        // Iterate 2 rows at a time and go across and back
+        for (int i = 0; i < arr.length; i = i+2) {
+            for (int j = 0; j < arr[i].length; j++) {
+                System.out.println(arr[i][j]);
+            }
+
+            // If iterating across to the right was the last row, end, otherwise
+            // iterate back across to the right
+            if (i + 1 < arr.length) {                
+                for (int j = arr[i + 1].length - 1; j >= 0; j--) {
+                    System.out.println(arr[i+1][j]);
+                }
+            }
+        }
     }
 
     /*
@@ -328,5 +341,16 @@ public class ArraysAndStringsSolutions {
         System.out.println(removeEven("iloveinterviewprep"));
 
         System.out.println(zigZag("PAYPALISHIRING", 3));
+
+        int[][] matrix = new int[4][5];
+        int val = 1;
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                matrix[i][j] = val++;
+            }
+        }
+
+        System.out.println(Arrays.deepToString(matrix));
+        printBackAndForth(matrix);
     }
 }
