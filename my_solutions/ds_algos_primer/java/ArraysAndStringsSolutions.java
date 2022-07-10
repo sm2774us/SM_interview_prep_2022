@@ -200,8 +200,10 @@ public class ArraysAndStringsSolutions {
      * Exercise 1.5: Given a 2D matrix, write a function to print the values in
      * the matrix in a clockwise spiral from outside to inside
      *
-     * Time Complexity:
-     * Space Complexity:
+     * Time Complexity: O(arr.length * arr[0].length), or,
+     *                  O(R*C) [ where R = number of rows,
+     *                                 C = number of columns ]
+     * Space Complexity: O(1)
      */
     public static void printSpiral(int[][] arr) {
         // We need to keep track of the boundaries of the current layer of the
@@ -246,8 +248,10 @@ public class ArraysAndStringsSolutions {
      * Exercise 1.6: Given a 2D matrix, write a function to print the values in
      * the matrix in a zig-zag order
      *
-     * Time Complexity:
-     * Space Complexity:
+     * Time Complexity: O(arr.length * arr[0].length), or,
+     *                  O(R*C) [ where R = number of rows,
+     *                                 C = number of columns ]
+     * Space Complexity: O(1)
      */
     public static void printDiagonals(int[][] arr) {
         int row = 0;
@@ -297,117 +301,355 @@ public class ArraysAndStringsSolutions {
     /*
      * Exercise 2.1: Given a string, print out all of the substrings
      *
-     * Time Complexity:
-     * Space Complexity:
+     * Time Complexity: O(s.length()^2)
+     * Space Complexity: O(1)
      */
     public static void printSubstrings(String s) {
-        // INSERT YOUR SOLUTION HERE
+        for (int i = 0; i < s.length(); i++) {
+            for (int j = i+1; j <= s.length(); j++) {
+                System.out.println(s.substring(i,j));
+            }
+        }
     }
 
     /*
      * Exercise 2.2: Write a function to find all duplicates in an array. The
      * array will contain exactly 1 duplicated value
      *
-     * Time Complexity:
-     * Space Complexity:
+     * Time Complexity: O(arr.length^2)
+     * Space Complexity: O(1)
      */
     public static int findDuplicates(int[] arr) {
-        // INSERT YOUR SOLUTION HERE
-        return 0;
+        // Use 2 pointers to compare each pair of values
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = i+1; j < arr.length; j++) {
+                if (arr[i] == arr[j]) return arr[i];
+            }
+        }
+
+        // We should never get here
+        return -1;
     }
 
     /*
      * Exercise 2.3: Given a sorted array, find every pair of values in the
      * array that sum up to a given target
      *
-     * Time Complexity:
-     * Space Complexity:
+     * Time Complexity: O(arr.length)
+     * Space Complexity: O(1)
      */
     public static int[][] twoSum(int[] arr, int target) {
-        // INSERT YOUR SOLUTION HERE
-        return null;
+        List<int[]> result = new ArrayList<>();
+
+        // We start our pointers at the beginning and move towards the center
+        int i = 0;
+        int j = arr.length - 1;
+
+        while (i < j) {
+            int sum = arr[i] + arr[j];
+            // If we found the target, we add it to the result. Then we either
+            // increment i or decrement j. It doesn't matter which we do
+            if (sum == target) {
+                result.add(new int[] { arr[i], arr[j] });
+
+                // We want to avoid including the same pair multiple times so we
+                // skip the pointer ahead to the next unique value. Since our
+                // array is sorted, we just keep incrementing until we see a
+                // new value
+                while (arr[i] == arr[i + 1])
+                    i++;
+                i++;
+            }
+
+            // We can find a larger sum by incrementing i. This makes the
+            // smaller value in our pair larger so the sum is larger
+            if (sum < target)
+                i++;
+
+            // If it's too big, we do the opposite by decrementing j
+            if (sum > target)
+                j--;
+        }
+
+        //return result;
+        return result.toArray(new int[result.size()][]);
+    }
+    
+        /*
+     * Exercise 2.3: Given a sorted array, find every pair of values in the
+     * array that sum up to a given target
+     *
+     * Time Complexity: O(arr.length)
+     * Space Complexity: O(1)
+     */
+    public static List<int[]> twoSumLst(int[] arr, int target) {
+        List<int[]> result = new ArrayList<>();
+
+        // We start our pointers at the beginning and move towards the center
+        int i = 0;
+        int j = arr.length-1;
+
+        while (i < j) {
+            int sum = arr[i] + arr[j];
+            // If we found the target, we add it to the result. Then we either
+            // increment i or decrement j. It doesn't matter which we do
+            if (sum == target) {
+                result.add(new int[]{arr[i], arr[j]});
+
+                // We want to avoid including the same pair multiple times so we
+                // skip the pointer ahead to the next unique value. Since our
+                // array is sorted, we just keep incrementing until we see a
+                // new value
+                while (arr[i] == arr[i+1]) i++;
+                i++;
+            }
+
+            // We can find a larger sum by incrementing i. This makes the
+            // smaller value in our pair larger so the sum is larger
+            if (sum < target) i++;
+
+            // If it's too big, we do the opposite by decrementing j
+            if (sum > target) j--;
+        }
+
+        return result;
     }
 
     /*
      * Exercise 3.1: Given two arrays, compare them to see if they are equal
      *
-     * Time Complexity:
-     * Space Complexity:
+     * Time Complexity: O(arr1.length)
+     * Space Complexity: O(1)
      */
     public static boolean arraysAreEqual(int[] arr1, int[] arr2) {
-        // INSERT YOUR SOLUTION HERE
-        return false;
+        // If they're not the same length they can't be equal
+        if (arr1.length != arr2.length) return false;
+
+        // Compare each value. If they're not equal then the arrays are unequal
+        for (int i = 0; i < arr1.length; i++) {
+            if (arr1[i] != arr2[i]) return false;
+        }
+
+        return true;
     }
 
     /*
      * Exercise 3.2: Given two strings, determine if one string is the reverse
      * of the other string
      *
-     * Time Complexity:
-     * Space Complexity:
+     * Time Complexity: O(s1.length())
+     * Space Complexity: O(1)
      */
     public static boolean stringsAreOpposite(String s1, String s2) {
-        // INSERT YOUR SOLUTION HERE
-        return false;
+        // If they're not the same length they can't be opposites
+        if (s1.length() != s2.length()) return false;
+
+        // Compare the opposing characters in each string. We could also just
+        // reverse one of the strings and compare them, but that takes extra
+        // space whereas this does not
+        for (int i = 0; i < s1.length(); i++) {
+            if (s1.charAt(i) != s2.charAt(s2.length()-i-1)) return false;
+        }
+
+        return true;
     }
 
     /*
      * Exercise 3.3: Given two strings, determine whether they are anagrams of
      * each other
      *
-     * Time Complexity:
-     * Space Complexity:
+     * Time Complexity: O(s1.length())
+     * Space Complexity: O(s1.length())
      */
     public static boolean areAnagrams(String s1, String s2) {
-        // INSERT YOUR SOLUTION HERE
-        return false;
+        // If they're not the same length they can't be anagrams
+        if (s1.length() != s2.length()) return false;
+
+        // Count the number of occurrences of each character in s1
+        Map<Character, Integer> chars = new HashMap<>();
+        for (char c : s1.toCharArray()) {
+            int count = 1;
+            if (chars.containsKey(c)) {
+                count = chars.get(c)+1;
+            }
+            chars.put(c, count);
+        }
+
+        // Subtract the chars in s2 from the count. We should end up with 0 of
+        // each character left over
+        for (char c : s2.toCharArray()) {
+            if (!chars.containsKey(c)) return false;
+            int count = chars.get(c);
+            if (count == 0) return false;
+            chars.put(c, count-1);
+        }
+
+        return true;
     }
 
     /*
      * Exercise 4.1: Given an array, compute the sum of each length-k subarray
      *
-     * Time Complexity:
-     * Space Complexity:
+     * Time Complexity: O(arr.length)
+     * Space Complexity: O(1)
      */
     public static int[] subarraySums(int[] arr, int k) {
-        // INSERT YOUR SOLUTION HERE
-        return null;
+        // The size of our result will be arr.length - k + 1
+        int[] result = new int[arr.length - k + 1];
+
+        // Compute the sum of the initial length-k subarray
+        int sum = 0;
+        for (int i = 0; i < k; i++) sum += arr[i];
+        result[0] = sum;
+
+        // Use a sliding window to go through the remainder of the array without
+        // recomputing the sum for every subarray
+        int left = 0;
+        int right = k-1;
+        while (right < arr.length-1) {
+            // The value at right+1 needs to be added to the sum and the value
+            // at left needs to be subtracted
+            sum += arr[++right];
+            sum -= arr[left++];
+            result[left] = sum;
+
+        }
+
+        return result;
     }
+
 
     /*
      * Exercise 4.2: Given a string, find the longest substring of the string
      * that does not contain any repeated characters
      *
-     * Time Complexity:
-     * Space Complexity:
+     * Time Complexity: O(s.length())
+     * Space Complexity: O(1)
      */
     public static int noRepeatedChars(String s) {
-        // INSERT YOUR SOLUTION HERE
-        return 0;
+        // Track the characters in our current substring
+        Set<Character> inSubstring = new HashSet<>();
+
+        int maxSubstring = 0;
+        int left = 0;
+        int right = 0;
+
+        // We expand right out as much as we can without getting duplicate
+        // chars. If we end up with duplicates, we increment left to shrink the
+        // substring until we no longer have duplicates
+        while (right < s.length()) {
+            // We have a duplicate character, so increment left until the
+            // substring no longer contains duplicates
+            while (inSubstring.contains(s.charAt(right))) {
+                inSubstring.remove(s.charAt(left++));
+            }
+
+            // We have a valid substring so is it the longest one?
+            maxSubstring = Math.max(maxSubstring, right-left+1);
+
+            // Try expanding the substring again
+            inSubstring.add(s.charAt(right++));
+        }
+
+        return maxSubstring;
     }
 
     /*
      * Exercise 4.3: Given two strings, s and p, find all occurrences of
      * anagrams of p in s. The output is the starting index of each anagram
      *
-     * Time Complexity:
-     * Space Complexity:
+     * Time Complexity: O(s.length())
+     * Space Complexity: O(1)
      */
     public static List<Integer> findAllAnagrams(String s, String p) {
-        // INSERT YOUR SOLUTION HERE
-        return null;
+        List<Integer> result = new ArrayList<>();
+
+        // Storing character counts. We can also use a HashMap like in the
+        // solution for 3.3 but if we know that all of our characters are
+        // English letters, this is easier for us to work with
+        int[] chars = new int[256];
+        for (char c : p.toCharArray()) chars[c]++;
+
+        // Do our sliding window
+        int left = 0;
+        int right = 0;
+        while (right < s.length()) {
+            // Add in the right character to our current window. We account for
+            // this by removing it from the character count we have for p
+            char rightChar = s.charAt(right++);
+            chars[rightChar]--;
+
+            // If the value is negative, then we have too many of rightChar in
+            // our substring so we need to make it smaller until we no longer
+            // have too many of that character
+            while (chars[rightChar] < 0) {
+                chars[s.charAt(left)]++;
+                left++;
+            }
+
+            // If we have the exact right number of occurrences of the character
+            // AND the substring is the right length, then this is a valid
+            // substring
+            if (chars[rightChar] == 0 && right-left == p.length()) result.add(left);
+        }
+
+        return result;
     }
 
     /*
      * Exercise 4.4: Given two strings, s and p, find the smallest substring of
      * s that contains all the characters in p
      *
-     * Time Complexity:
-     * Space Complexity:
+     * Time Complexity: O(s.length())
+     * Space Complexity: O(1)
      */
     public static String smallestSubstring(String s, String p) {
-        // INSERT YOUR SOLUTION HERE
-        return null;
+        // Same as 4.3, we use an array to store character count
+        int[] chars = new int[256];
+        for (char c : p.toCharArray()) chars[c]++;
+
+        int left = 0;
+        int right = 0;
+
+        // In addition to tracking left and right, we'll track the start and
+        // length of the string, as well as the count of characters from p that
+        // we have in our substring. The count allows us to quickly see whether
+        // our substring includes all the characters in p or not
+        int count = 0;
+        int minLength = Integer.MAX_VALUE;
+        int minStart = 0;
+
+        while (right < s.length()) {
+            // This is basically opposite of 4.3 where we WANT all the values to
+            // get to 0 or negative because we want the string to be inclusive
+            // of all the characters in p
+            char rightChar = s.charAt(right++);
+            chars[rightChar]--;
+
+            if (chars[rightChar] >= 0) {
+                count++;
+            }
+
+            // If count == p.length we have a valid substring. In this case,
+            // keep shrinking it as much as we can by incrementing left
+            while (count == p.length()) {
+                if (right - left < minLength) {
+                    minLength = right-left;
+                    minStart = left;
+                }
+
+                // If we have extra of a character, we don't decrement the count
+                // until we have fewer occurrences of that char than there are
+                // in p
+                if (++chars[s.charAt(left)] > 0) count--;
+                left++;
+            }
+        }
+
+        // If we don't find a valid substring, return ""
+        if (minLength > s.length()) return "";
+
+        return s.substring(minStart, minStart+minLength);
     }
 
     // Sample test cases
@@ -439,5 +681,30 @@ public class ArraysAndStringsSolutions {
         System.out.println(Arrays.deepToString(matrix));
 
         printDiagonals(matrix);
+
+        //printSubstrings("abc");
+        printSubstrings("abcd");
+
+        System.out.println(findDuplicates(new int[] { 1, 2, 3, 2, 4 }));
+
+        int[] arr = new int[]{1,2,2,2,3,4,5,6,6,6};
+        System.out.println(Arrays.deepToString(twoSum(arr, 8)));
+        List<int[]> twoSum = twoSumLst(arr, 8);
+        for (int[] a : twoSum)
+            System.out.println(Arrays.toString(a));
+        
+        System.out.println(arraysAreEqual(new int[] { 1, 2, 3 }, new int[] { 1, 2, 3 }));
+        
+        System.out.println(stringsAreOpposite("abcde", "edcba"));
+
+        System.out.println(areAnagrams("ababc", "cbaab"));
+
+        System.out.println(Arrays.toString(subarraySums(new int[] { 1, 2, 3, 4, 5 }, 3)));
+        
+        System.out.println(noRepeatedChars("abcbabcd"));
+
+        System.out.println(findAllAnagrams("cbaebabacd", "abc"));
+
+        System.out.println(smallestSubstring("aabbccdd", "abc"));
     }
 }
