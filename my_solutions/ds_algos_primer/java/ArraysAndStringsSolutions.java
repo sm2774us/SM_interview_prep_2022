@@ -174,7 +174,9 @@ public class ArraysAndStringsSolutions {
      * Exercise 1.4: Given a 2D matrix, write a function to print the values
      * going back and forth across each row
      *
-     * Time Complexity: O(arr.length * arr[0].length)
+     * Time Complexity: O(arr.length * arr[0].length), or,
+     *                  O(R*C) [ where R = number of rows,
+     *                                 C = number of columns ]
      * Space Complexity: O(1)
      */
     public static void printBackAndForth(int[][] arr) {
@@ -202,7 +204,42 @@ public class ArraysAndStringsSolutions {
      * Space Complexity:
      */
     public static void printSpiral(int[][] arr) {
-        // INSERT YOUR SOLUTION HERE
+        // We need to keep track of the boundaries of the current layer of the
+        // spiral that we are traversing
+        int minRow = 0;
+        int minCol = 0;
+        int maxRow = arr.length-1;
+        int maxCol = arr[0].length - 1;
+        
+        // Once the mins and maxes converge, we are at the center of the spiral.
+        // The spiral follows a fixed set of steps. We go left, down, right, up.
+        // For each of these, we just interate to the bounds, so we express each
+        // one explicitly.
+        while (minRow < maxRow && minCol < maxCol) {
+            // Go across the top
+            for (int col = minCol; col <= maxCol; col++) {
+                System.out.println(arr[minRow][col]);
+            }
+            minRow++;
+
+            // Go down the right side
+            for (int row = minRow ; row <= maxRow; row++) {
+                System.out.println(arr[row][maxCol]);
+            }
+            maxCol--;
+
+            // Go across the bottom
+            for (int col = maxCol; col >= minCol; col--) {
+                System.out.println(arr[maxRow][col]);
+            }
+            maxRow--;
+
+            // Go up the left side
+            for (int row = maxRow; row >= minRow; row--) {
+                System.out.println(arr[row][minCol]);
+            }
+            minCol++;
+        }
     }
 
     /*
@@ -213,7 +250,48 @@ public class ArraysAndStringsSolutions {
      * Space Complexity:
      */
     public static void printDiagonals(int[][] arr) {
-        // INSERT YOUR SOLUTION HERE
+        int row = 0;
+        int col = 0;
+
+        // Like the spiral, we have clearly defined directions we need to go. In
+        // this case we either go up to the right or down to the left. We define
+        // each of these explicitly and just go back and forth between doing one
+        // and the other
+        while (true) {
+            // Go up to the right
+            while (row > 0 && col < arr[0].length-1) {
+                System.out.println(arr[row][col]);
+                row--;
+                col++;
+            }
+            // Without this we won't print the final value in the diagonal
+            System.out.println(arr[row][col]);
+
+            // Check whether we're at the bottom right corner
+            if (row == arr.length-1 && col == arr[0].length-1) break;
+
+            // We need to update our positiion differently depending on whether
+            // we're still going along the top of the matrix or down the
+            // righthand side
+            else if (col+1 < arr[0].length) col++;
+            else row++;
+
+            // Go down to the left
+            while (row < arr.length-1 && col > 0) {
+                System.out.println(arr[row][col]);
+                row++;
+                col--;
+            }
+            // Without this we won't print the final value in the diagonal
+            System.out.println(arr[row][col]);
+
+            // Check whether we're at the bottom right corner
+            if (row == arr.length-1 && col == arr[0].length-1) break;
+
+            // Are we going along the lefthand side or the bottom?
+            else if (row+1 < arr.length) row++;
+            else col++;
+        }
     }
 
     /*
@@ -351,6 +429,15 @@ public class ArraysAndStringsSolutions {
         }
 
         System.out.println(Arrays.deepToString(matrix));
+
         printBackAndForth(matrix);
+
+        System.out.println(Arrays.deepToString(matrix));
+
+        printSpiral(matrix);
+
+        System.out.println(Arrays.deepToString(matrix));
+
+        printDiagonals(matrix);
     }
 }
