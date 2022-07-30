@@ -1,3 +1,4 @@
+package com.github.interview_prep.ds_algo_primer.solutions;
 /*
  *   Title: ArraysAndStringsSolutions
  *
@@ -5,10 +6,12 @@
  *   the DS & Algos Primer. If you have not already attempted these exercises,
  *   we highly recommend you complete them before reviewing the solutions here.
  *
- *   Execution: javac ArraysAndStringsSolutions.java && java -ea ArraysAndStringsSolutions
  */
 
 import java.util.*;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ArraysAndStringsSolutions {
 
@@ -179,21 +182,30 @@ public class ArraysAndStringsSolutions {
      *                                 C = number of columns ]
      * Space Complexity: O(1)
      */
-    public static void printBackAndForth(int[][] arr) {
+    public static int[] printBackAndForth(int[][] arr) {		
+		int[] result = new int[arr.length * arr[0].length];
+		int counter = 0;
         // Iterate 2 rows at a time and go across and back
         for (int i = 0; i < arr.length; i = i+2) {
             for (int j = 0; j < arr[i].length; j++) {
-                System.out.println(arr[i][j]);
+                //System.out.println(arr[i][j]);
+                Logger.getLogger(ArraysAndStringsSolutions.class.getName()).log(Level.INFO, arr[i][j]);
+                result[counter] = arr[i][j];
+                counter++;
             }
 
             // If iterating across to the right was the last row, end, otherwise
             // iterate back across to the right
             if (i + 1 < arr.length) {                
                 for (int j = arr[i + 1].length - 1; j >= 0; j--) {
-                    System.out.println(arr[i+1][j]);
+                    //System.out.println(arr[i+1][j]);
+                    Logger.getLogger(ArraysAndStringsSolutions.class.getName()).log(Level.INFO, arr[i+1][j]);
+                    result[counter] = arr[i+1][j];
+                    counter++;
                 }
             }
         }
+		return result;
     }
 
     /*
@@ -205,13 +217,15 @@ public class ArraysAndStringsSolutions {
      *                                 C = number of columns ]
      * Space Complexity: O(1)
      */
-    public static void printSpiral(int[][] arr) {
+    public static int[] printSpiral(int[][] arr) {
+		int[] result = new int[arr.length * arr[0].length];
         // We need to keep track of the boundaries of the current layer of the
         // spiral that we are traversing
         int minRow = 0;
         int minCol = 0;
         int maxRow = arr.length-1;
         int maxCol = arr[0].length - 1;
+        int counter = 0;
         
         // Once the mins and maxes converge, we are at the center of the spiral.
         // The spiral follows a fixed set of steps. We go left, down, right, up.
@@ -220,28 +234,41 @@ public class ArraysAndStringsSolutions {
         while (minRow < maxRow && minCol < maxCol) {
             // Go across the top
             for (int col = minCol; col <= maxCol; col++) {
-                System.out.println(arr[minRow][col]);
+                //System.out.println(arr[minRow][col]);
+                Logger.getLogger(ArraysAndStringsSolutions.class.getName()).log(Level.INFO, arr[minRow][col]);
+                result[counter] = arr[minRow][col];
+                counter++;
             }
             minRow++;
 
             // Go down the right side
             for (int row = minRow ; row <= maxRow; row++) {
-                System.out.println(arr[row][maxCol]);
+                //System.out.println(arr[row][maxCol]);
+                Logger.getLogger(ArraysAndStringsSolutions.class.getName()).log(Level.INFO, arr[row][maxCol]);
+                result[counter] = arr[minRow][col];
+                counter++;
             }
             maxCol--;
 
             // Go across the bottom
             for (int col = maxCol; col >= minCol; col--) {
-                System.out.println(arr[maxRow][col]);
+                //System.out.println(arr[maxRow][col]);
+                Logger.getLogger(ArraysAndStringsSolutions.class.getName()).log(Level.INFO, arr[maxRow][col]);
+                result[counter] = arr[minRow][col];
+                counter++;
             }
             maxRow--;
 
             // Go up the left side
             for (int row = maxRow; row >= minRow; row--) {
-                System.out.println(arr[row][minCol]);
+                //System.out.println(arr[row][minCol]);
+                Logger.getLogger(ArraysAndStringsSolutions.class.getName()).log(Level.INFO, arr[row][minCol]);
+                result[counter] = arr[row][minCol];
+                counter++;
             }
             minCol++;
         }
+        return result;
     }
 
     /*
@@ -254,6 +281,7 @@ public class ArraysAndStringsSolutions {
      * Space Complexity: O(1)
      */
     public static void printDiagonals(int[][] arr) {
+        int[] result = new int[arr.length * arr[0].length];
         int row = 0;
         int col = 0;
 
@@ -264,12 +292,18 @@ public class ArraysAndStringsSolutions {
         while (true) {
             // Go up to the right
             while (row > 0 && col < arr[0].length-1) {
-                System.out.println(arr[row][col]);
+                //System.out.println(arr[row][col]);
+                Logger.getLogger(ArraysAndStringsSolutions.class.getName()).log(Level.INFO, arr[row][col]);
+                result[counter] = arr[row][col];
+                counter++;				
                 row--;
                 col++;
             }
             // Without this we won't print the final value in the diagonal
-            System.out.println(arr[row][col]);
+            //System.out.println(arr[row][col]);
+            Logger.getLogger(ArraysAndStringsSolutions.class.getName()).log(Level.INFO, arr[row][col]);
+            result[counter] = arr[row][col];
+            counter++;			
 
             // Check whether we're at the bottom right corner
             if (row == arr.length-1 && col == arr[0].length-1) break;
@@ -283,11 +317,17 @@ public class ArraysAndStringsSolutions {
             // Go down to the left
             while (row < arr.length-1 && col > 0) {
                 System.out.println(arr[row][col]);
+                Logger.getLogger(ArraysAndStringsSolutions.class.getName()).log(Level.INFO, arr[row][col]);
+                result[counter] = arr[row][col];
+                counter++;				
                 row++;
                 col--;
             }
             // Without this we won't print the final value in the diagonal
             System.out.println(arr[row][col]);
+            Logger.getLogger(ArraysAndStringsSolutions.class.getName()).log(Level.INFO, arr[row][col]);
+            result[counter] = arr[row][col];
+            counter++;			
 
             // Check whether we're at the bottom right corner
             if (row == arr.length-1 && col == arr[0].length-1) break;
@@ -296,6 +336,7 @@ public class ArraysAndStringsSolutions {
             else if (row+1 < arr.length) row++;
             else col++;
         }
+        return result;		
     }
 
     /*
@@ -304,12 +345,16 @@ public class ArraysAndStringsSolutions {
      * Time Complexity: O(s.length()^2)
      * Space Complexity: O(1)
      */
-    public static void printSubstrings(String s) {
+    public static List<String> printSubstrings(String s) {
+        List<String> result = new ArrayList<>();
         for (int i = 0; i < s.length(); i++) {
             for (int j = i+1; j <= s.length(); j++) {
                 System.out.println(s.substring(i,j));
+                Logger.getLogger(ArraysAndStringsSolutions.class.getName()).log(Level.INFO, s.substring(i,j));
+                result.add(s.substring(i,j));
             }
         }
+        return result;
     }
 
     /*
@@ -375,7 +420,7 @@ public class ArraysAndStringsSolutions {
         return result.toArray(new int[result.size()][]);
     }
     
-        /*
+    /*
      * Exercise 2.3: Given a sorted array, find every pair of values in the
      * array that sum up to a given target
      *

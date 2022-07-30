@@ -1,3 +1,4 @@
+package com.github.interview_prep.ds_algo_primer.solutions;
 /*
  *   Title: Stack & Queue Solutions
  *
