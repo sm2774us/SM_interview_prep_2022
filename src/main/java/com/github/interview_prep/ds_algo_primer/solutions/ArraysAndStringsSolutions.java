@@ -99,7 +99,7 @@ public class ArraysAndStringsSolutions {
      * put the chars in the array vertically down and obliquely up. Like this:
      * 
      * +------+----+----+----+----+----+----+----+
-     * | sb0: |	0  |    | 4  |    | 8  |    | 12 |
+     * | sb0: | 0  |    | 4  |    | 8  |    | 12 |
      * +------+----+----+----+----+----+----+----+
      * | sb1: | 1  | 3  | 5  | 7  | 9  | 11 | 13 |
      * +------+----+----+----+----+----+----+----+
@@ -143,7 +143,7 @@ public class ArraysAndStringsSolutions {
      * put the chars in the array vertically down and obliquely up. Like this:
      * 
      * +------+----+----+----+----+----+----+----+
-     * | sb0: |	0  |    |    | 6  |    |    | 12 |
+     * | sb0: | 0  |    |    | 6  |    |    | 12 |
      * +------+----+----+----+----+----+----+----+
      * | sb1: | 1  |    | 5  | 7  |    | 11 | 13 |
      * +------+----+----+----+----+----+----+----+
@@ -182,9 +182,9 @@ public class ArraysAndStringsSolutions {
      *                                 C = number of columns ]
      * Space Complexity: O(1)
      */
-    public static int[] printBackAndForth(int[][] arr) {		
-		int[] result = new int[arr.length * arr[0].length];
-		int counter = 0;
+    public static int[] printBackAndForth(int[][] arr) {        
+        int[] result = new int[arr.length * arr[0].length];
+        int counter = 0;
         // Iterate 2 rows at a time and go across and back
         for (int i = 0; i < arr.length; i = i+2) {
             for (int j = 0; j < arr[i].length; j++) {
@@ -205,7 +205,7 @@ public class ArraysAndStringsSolutions {
                 }
             }
         }
-		return result;
+        return result;
     }
 
     /*
@@ -218,7 +218,7 @@ public class ArraysAndStringsSolutions {
      * Space Complexity: O(1)
      */
     public static int[] printSpiral(int[][] arr) {
-		int[] result = new int[arr.length * arr[0].length];
+        int[] result = new int[arr.length * arr[0].length];
         // We need to keep track of the boundaries of the current layer of the
         // spiral that we are traversing
         int minRow = 0;
@@ -295,7 +295,7 @@ public class ArraysAndStringsSolutions {
                 //System.out.println(arr[row][col]);
                 Logger.getLogger(ArraysAndStringsSolutions.class.getName()).log(Level.INFO, arr[row][col]);
                 result[counter] = arr[row][col];
-                counter++;				
+                counter++;              
                 row--;
                 col++;
             }
@@ -303,7 +303,7 @@ public class ArraysAndStringsSolutions {
             //System.out.println(arr[row][col]);
             Logger.getLogger(ArraysAndStringsSolutions.class.getName()).log(Level.INFO, arr[row][col]);
             result[counter] = arr[row][col];
-            counter++;			
+            counter++;          
 
             // Check whether we're at the bottom right corner
             if (row == arr.length-1 && col == arr[0].length-1) break;
@@ -319,7 +319,7 @@ public class ArraysAndStringsSolutions {
                 System.out.println(arr[row][col]);
                 Logger.getLogger(ArraysAndStringsSolutions.class.getName()).log(Level.INFO, arr[row][col]);
                 result[counter] = arr[row][col];
-                counter++;				
+                counter++;              
                 row++;
                 col--;
             }
@@ -327,7 +327,7 @@ public class ArraysAndStringsSolutions {
             System.out.println(arr[row][col]);
             Logger.getLogger(ArraysAndStringsSolutions.class.getName()).log(Level.INFO, arr[row][col]);
             result[counter] = arr[row][col];
-            counter++;			
+            counter++;          
 
             // Check whether we're at the bottom right corner
             if (row == arr.length-1 && col == arr[0].length-1) break;
@@ -336,7 +336,7 @@ public class ArraysAndStringsSolutions {
             else if (row+1 < arr.length) row++;
             else col++;
         }
-        return result;		
+        return result;      
     }
 
     /*
