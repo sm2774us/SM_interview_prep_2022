@@ -39,7 +39,7 @@ jobs:
     - name: Build with Gradle
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SONAR_TOKEN: f4f48f5dc3d59b444b238326cdf534ae5614cc59
+        SONAR_TOKEN: 6e0772d91f97b5160f1c634e2667932d821bc4d8
       run: chmod +x gradlew && ./gradlew spotlessJavaCheck test jacocoTestReport sonarqube -Dsonar.projectKey=sm2774us_SM_interview_prep_2022 -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=sm2774us
     - uses: codecov/codecov-action@v1
       with:
