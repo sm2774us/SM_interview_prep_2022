@@ -10,7 +10,10 @@ package com.github.interview_prep.ds_algo_primer.solutions;
  *   Execution: javac HeapSolutions.java && java -ea HeapSolutions
  */
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.PriorityQueue;
 
 public class HeapSolutions {
 

@@ -9,7 +9,11 @@ package com.github.interview_prep.ds_algo_primer.solutions;
  *   Execution: javac StackAndQueueSolutions.java && java -ea StackAndQueueSolutions
  */
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Queue;
+import java.util.Stack;
 
 public class StackAndQueueSolutions {
 

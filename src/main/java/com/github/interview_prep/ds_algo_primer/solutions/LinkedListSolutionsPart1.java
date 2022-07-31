@@ -10,8 +10,6 @@ package com.github.interview_prep.ds_algo_primer.solutions;
  *   Execution: javac LinkedListSolutionsPart1.java && java -ea LinkedListSolutionsPart1
  */
 
-import java.util.*;
-
 public class LinkedListSolutionsPart1 {
 
     // Exercise 1.1: Implement a singly-linked list

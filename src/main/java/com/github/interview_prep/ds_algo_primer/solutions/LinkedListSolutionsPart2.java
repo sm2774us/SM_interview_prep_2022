@@ -10,7 +10,8 @@ package com.github.interview_prep.ds_algo_primer.solutions;
  *   Execution: javac LinkedListSolutionsPart2.java && java -ea LinkedListSolutionsPart2
  */
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
 
 public class LinkedListSolutionsPart2 {
 

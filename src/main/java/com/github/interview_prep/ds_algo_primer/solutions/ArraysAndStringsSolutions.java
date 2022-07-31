@@ -1,4 +1,5 @@
 package com.github.interview_prep.ds_algo_primer.solutions;
+import java.util.ArrayList;
 /*
  *   Title: ArraysAndStringsSolutions
  *
@@ -8,13 +9,17 @@ package com.github.interview_prep.ds_algo_primer.solutions;
  *
  */
 import java.util.Arrays;
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
-
+import java.util.Map;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ArraysAndStringsSolutions {
+
+    private static final Logger LOGGER = Logger.getLogger(ArraysAndStringsSolutions.class.getName());
 
     /*
      * Exercise 1.1: Write a function that takes an integer array and reverses
@@ -196,7 +201,7 @@ public class ArraysAndStringsSolutions {
         for (int i = 0; i < arr.length; i = i+2) {
             for (int j = 0; j < arr[i].length; j++) {
                 //System.out.println(arr[i][j]);
-                Logger.getLogger(ArraysAndStringsSolutions.class.getName()).log(Level.INFO, arr[i][j]);
+                LOGGER.log(Level.INFO, String.valueOf(arr[i][j]));
                 result[counter] = arr[i][j];
                 counter++;
             }
@@ -206,7 +211,7 @@ public class ArraysAndStringsSolutions {
             if (i + 1 < arr.length) {                
                 for (int j = arr[i + 1].length - 1; j >= 0; j--) {
                     //System.out.println(arr[i+1][j]);
-                    Logger.getLogger(ArraysAndStringsSolutions.class.getName()).log(Level.INFO, arr[i+1][j]);
+                    LOGGER.log(Level.INFO, String.valueOf(arr[i+1][j]));
                     result[counter] = arr[i+1][j];
                     counter++;
                 }
@@ -242,7 +247,7 @@ public class ArraysAndStringsSolutions {
             // Go across the top
             for (int col = minCol; col <= maxCol; col++) {
                 //System.out.println(arr[minRow][col]);
-                Logger.getLogger(ArraysAndStringsSolutions.class.getName()).log(Level.INFO, arr[minRow][col]);
+                LOGGER.log(Level.INFO, String.valueOf(arr[minRow][col]));
                 result[counter] = arr[minRow][col];
                 counter++;
             }
@@ -251,8 +256,8 @@ public class ArraysAndStringsSolutions {
             // Go down the right side
             for (int row = minRow ; row <= maxRow; row++) {
                 //System.out.println(arr[row][maxCol]);
-                Logger.getLogger(ArraysAndStringsSolutions.class.getName()).log(Level.INFO, arr[row][maxCol]);
-                result[counter] = arr[minRow][col];
+                LOGGER.log(Level.INFO, String.valueOf(arr[row][maxCol]));
+                result[counter] = arr[row][maxCol];
                 counter++;
             }
             maxCol--;
@@ -260,8 +265,8 @@ public class ArraysAndStringsSolutions {
             // Go across the bottom
             for (int col = maxCol; col >= minCol; col--) {
                 //System.out.println(arr[maxRow][col]);
-                Logger.getLogger(ArraysAndStringsSolutions.class.getName()).log(Level.INFO, arr[maxRow][col]);
-                result[counter] = arr[minRow][col];
+                LOGGER.log(Level.INFO, String.valueOf(arr[maxRow][col]));
+                result[counter] = arr[maxRow][col];
                 counter++;
             }
             maxRow--;
@@ -269,7 +274,7 @@ public class ArraysAndStringsSolutions {
             // Go up the left side
             for (int row = maxRow; row >= minRow; row--) {
                 //System.out.println(arr[row][minCol]);
-                Logger.getLogger(ArraysAndStringsSolutions.class.getName()).log(Level.INFO, arr[row][minCol]);
+                LOGGER.log(Level.INFO, String.valueOf(arr[row][minCol]));
                 result[counter] = arr[row][minCol];
                 counter++;
             }
@@ -287,8 +292,9 @@ public class ArraysAndStringsSolutions {
      *                                 C = number of columns ]
      * Space Complexity: O(1)
      */
-    public static void printDiagonals(int[][] arr) {
+    public static int[] printDiagonals(int[][] arr) {
         int[] result = new int[arr.length * arr[0].length];
+        int counter = 0;
         int row = 0;
         int col = 0;
 
@@ -300,7 +306,7 @@ public class ArraysAndStringsSolutions {
             // Go up to the right
             while (row > 0 && col < arr[0].length-1) {
                 //System.out.println(arr[row][col]);
-                Logger.getLogger(ArraysAndStringsSolutions.class.getName()).log(Level.INFO, arr[row][col]);
+                LOGGER.log(Level.INFO, String.valueOf(arr[row][col]));
                 result[counter] = arr[row][col];
                 counter++;              
                 row--;
@@ -308,7 +314,7 @@ public class ArraysAndStringsSolutions {
             }
             // Without this we won't print the final value in the diagonal
             //System.out.println(arr[row][col]);
-            Logger.getLogger(ArraysAndStringsSolutions.class.getName()).log(Level.INFO, arr[row][col]);
+            LOGGER.log(Level.INFO, String.valueOf(arr[row][col]));
             result[counter] = arr[row][col];
             counter++;          
 
@@ -323,16 +329,16 @@ public class ArraysAndStringsSolutions {
 
             // Go down to the left
             while (row < arr.length-1 && col > 0) {
-                System.out.println(arr[row][col]);
-                Logger.getLogger(ArraysAndStringsSolutions.class.getName()).log(Level.INFO, arr[row][col]);
+                //System.out.println(arr[row][col]);
+                LOGGER.log(Level.INFO, String.valueOf(arr[row][col]));
                 result[counter] = arr[row][col];
                 counter++;              
                 row++;
                 col--;
             }
             // Without this we won't print the final value in the diagonal
-            System.out.println(arr[row][col]);
-            Logger.getLogger(ArraysAndStringsSolutions.class.getName()).log(Level.INFO, arr[row][col]);
+            //System.out.println(arr[row][col]);
+            LOGGER.log(Level.INFO, String.valueOf(arr[row][col]));
             result[counter] = arr[row][col];
             counter++;          
 
@@ -356,8 +362,8 @@ public class ArraysAndStringsSolutions {
         List<String> result = new ArrayList<>();
         for (int i = 0; i < s.length(); i++) {
             for (int j = i+1; j <= s.length(); j++) {
-                System.out.println(s.substring(i,j));
-                Logger.getLogger(ArraysAndStringsSolutions.class.getName()).log(Level.INFO, s.substring(i,j));
+                //System.out.println(s.substring(i,j));
+                LOGGER.log(Level.INFO, s.substring(i,j));
                 result.add(s.substring(i,j));
             }
         }
@@ -708,11 +714,14 @@ public class ArraysAndStringsSolutions {
     public static void main(String[] args) {
         int[] toReverse = new int[] { 1, 2, 3, 4, 5 };
         reverseArray(toReverse);
-        System.out.println(Arrays.toString(toReverse));
+        //System.out.println(Arrays.toString(toReverse));
+        LOGGER.log(Level.INFO, Arrays.toString(toReverse));
 
-        System.out.println(removeEven("iloveinterviewprep"));
+        //System.out.println(removeEven("iloveinterviewprep"));
+        LOGGER.log(Level.INFO, removeEven("iloveinterviewprep"));
 
-        System.out.println(zigZag("PAYPALISHIRING", 3));
+        //System.out.println(zigZag("PAYPALISHIRING", 3));
+        LOGGER.log(Level.INFO, zigZag("PAYPALISHIRING", 3));
 
         int[][] matrix = new int[4][5];
         int val = 1;
@@ -722,41 +731,57 @@ public class ArraysAndStringsSolutions {
             }
         }
 
-        System.out.println(Arrays.deepToString(matrix));
+        //System.out.println(Arrays.deepToString(matrix));
+        LOGGER.log(Level.INFO, Arrays.deepToString(matrix));
 
         printBackAndForth(matrix);
 
-        System.out.println(Arrays.deepToString(matrix));
+        //System.out.println(Arrays.deepToString(matrix));
+        LOGGER.log(Level.INFO, Arrays.deepToString(matrix));
 
         printSpiral(matrix);
 
-        System.out.println(Arrays.deepToString(matrix));
+        //System.out.println(Arrays.deepToString(matrix));
+        LOGGER.log(Level.INFO, Arrays.deepToString(matrix));
 
         printDiagonals(matrix);
 
         //printSubstrings("abc");
-        printSubstrings("abcd");
+        //printSubstrings("abcd");
+        LOGGER.log(Level.INFO, Arrays.deepToString(matrix));
+        printSubstrings("abcd").forEach(s -> LOGGER.log(Level.INFO, s));
 
-        System.out.println(findDuplicates(new int[] { 1, 2, 3, 2, 4 }));
+        //System.out.println(findDuplicates(new int[] { 1, 2, 3, 2, 4 }));
+        LOGGER.log(Level.INFO, String.valueOf(findDuplicates(new int[] { 1, 2, 3, 2, 4 })));
 
         int[] arr = new int[]{1,2,2,2,3,4,5,6,6,6};
-        System.out.println(Arrays.deepToString(twoSum(arr, 8)));
+        //System.out.println(Arrays.deepToString(twoSum(arr, 8)));
+        LOGGER.log(Level.INFO, Arrays.deepToString(twoSum(arr, 8)));
         List<int[]> twoSum = twoSumLst(arr, 8);
-        for (int[] a : twoSum)
-            System.out.println(Arrays.toString(a));
+        for (int[] a : twoSum) {
+            //System.out.println(Arrays.toString(a));
+            LOGGER.log(Level.INFO, Arrays.toString(a));
+        }
         
-        System.out.println(arraysAreEqual(new int[] { 1, 2, 3 }, new int[] { 1, 2, 3 }));
+        //System.out.println(arraysAreEqual(new int[] { 1, 2, 3 }, new int[] { 1, 2, 3 }));
+        LOGGER.log(Level.INFO, String.valueOf(arraysAreEqual(new int[] { 1, 2, 3 }, new int[] { 1, 2, 3 })));
         
-        System.out.println(stringsAreOpposite("abcde", "edcba"));
+        //System.out.println(stringsAreOpposite("abcde", "edcba"));
+        LOGGER.log(Level.INFO, String.valueOf(stringsAreOpposite("abcde", "edcba")));
 
-        System.out.println(areAnagrams("ababc", "cbaab"));
+        //System.out.println(areAnagrams("ababc", "cbaab"));
+        LOGGER.log(Level.INFO, String.valueOf(areAnagrams("ababc", "cbaab")));
 
-        System.out.println(Arrays.toString(subarraySums(new int[] { 1, 2, 3, 4, 5 }, 3)));
+        //System.out.println(Arrays.toString(subarraySums(new int[] { 1, 2, 3, 4, 5 }, 3)));
+        LOGGER.log(Level.INFO, Arrays.toString(subarraySums(new int[] { 1, 2, 3, 4, 5 }, 3)));
         
-        System.out.println(noRepeatedChars("abcbabcd"));
+        //System.out.println(noRepeatedChars("abcbabcd"));
+        LOGGER.log(Level.INFO, String.valueOf(noRepeatedChars("abcbabcd")));
 
-        System.out.println(findAllAnagrams("cbaebabacd", "abc"));
+        //System.out.println(findAllAnagrams("cbaebabacd", "abc"));
+        findAllAnagrams("cbaebabacd", "abc").forEach(i -> LOGGER.log(Level.INFO, String.valueOf(i)));
 
-        System.out.println(smallestSubstring("aabbccdd", "abc"));
+        //System.out.println(smallestSubstring("aabbccdd", "abc"));
+        LOGGER.log(Level.INFO, smallestSubstring("aabbccdd", "abc"));
     }
 }
