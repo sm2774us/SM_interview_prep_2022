@@ -12,8 +12,12 @@ package com.github.interview_prep.ds_algo_primer.solutions;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class LinkedListSolutionsPart2 {
+
+    private static final Logger LOGGER = Logger.getLogger(LinkedListSolutionsPart2.class.getName());
 
     // A simple singly-linked node class (copied from Part 1)
     public static class SinglyLinkedListNode {
@@ -373,71 +377,114 @@ public class LinkedListSolutionsPart2 {
     }
 
     // Test method to print singly linked list
-    public static void printSingle(SinglyLinkedListNode n) {
+    // public static void printSingle(SinglyLinkedListNode n) {
+    //     SinglyLinkedListNode curr = n;
+    //     while (curr != null) {
+    //         System.out.print(curr.val + " -> ");
+    //         curr = curr.next;
+    //     }
+    //     System.out.println("null");
+    // }
+    public static String printSingle(SinglyLinkedListNode n) {
+        StringBuilder sb = new StringBuilder();
         SinglyLinkedListNode curr = n;
         while (curr != null) {
-            System.out.print(curr.val + " -> ");
+            // System.out.print(curr.val + " -> ");
+            sb.append(curr.val + " -> ");
             curr = curr.next;
         }
-        System.out.println("null");
+        // System.out.println("null");
+        sb.append("null");
+        return sb.toString();
     }
 
     // Test method to print doubly linked list
-    public static void printDouble(DoublyLinkedListNode n) {
+    // public static void printDouble(DoublyLinkedListNode n) {
+    //     if (n == null) {
+    //         System.out.println("null");
+    //         return;
+    //     }
+    //     DoublyLinkedListNode curr = n;
+    //     System.out.print("null <- ");
+    //     while (curr.next != null) {
+    //         System.out.print(curr.val + " <-> ");
+    //         curr = curr.next;
+    //     }
+    //     System.out.println(curr.val + " -> null");
+    // }
+    public static String printDouble(DoublyLinkedListNode n) {
+        StringBuilder sb = new StringBuilder();
         if (n == null) {
-            System.out.println("null");
-            return;
+            sb.append("null");
+            return sb.toString();
         }
         DoublyLinkedListNode curr = n;
-        System.out.print("null <- ");
+        // System.out.print("null <- ");
+        sb.append("null <- ");
         while (curr.next != null) {
-            System.out.print(curr.val + " <-> ");
+            // System.out.print(curr.val + " <-> ");
+            sb.append(curr.val + " <-> ");
             curr = curr.next;
         }
-        System.out.println(curr.val + " -> null");
+        // System.out.println(curr.val + " -> null");
+        sb.append(curr.val + " -> null");
+        return sb.toString();
     }
 
     // Test cases
     public static void main(String[] args) {
         DoublyLinkedListNode d = doubleGenerator(8);
-        printDouble(d);
+        // printDouble(d);
+        LOGGER.log(Level.INFO, printDouble(d));
         swapNodes(d, 2, 6);
-        printDouble(d);
+        // printDouble(d);
+        LOGGER.log(Level.INFO, printDouble(d));
 
         swapNodes(d, 1, 7);
-        printDouble(d);
+        // printDouble(d);
+        LOGGER.log(Level.INFO, printDouble(d));
 
         swapNodes(d, 1, 2);
-        printDouble(d);
+        // printDouble(d);
+        LOGGER.log(Level.INFO, printDouble(d));
 
         SinglyLinkedListNode l = singleGenerator(4);
         removeOdd(l);
-        printSingle(l);
+        // printSingle(l);
+        LOGGER.log(Level.INFO, printSingle(l));
 
         l = singleGenerator(9);
         deinterleave(l);
-        printSingle(l);
+        // printSingle(l);
+        LOGGER.log(Level.INFO, printSingle(l));
 
         l = singleGenerator(5);
         l = reverse(l);
-        printSingle(l);
+        // printSingle(l);
+        LOGGER.log(Level.INFO, printSingle(l));
 
-        System.out.println(areEqual(singleGenerator(5), singleGenerator(5)));
+        // System.out.println(areEqual(singleGenerator(5), singleGenerator(5)));
+        LOGGER.log(Level.INFO, String.valueOf(areEqual(singleGenerator(5), singleGenerator(5))));
 
-        System.out.println(nthToLast(singleGenerator(5), 2).val);
+        // System.out.println(nthToLast(singleGenerator(5), 2).val);
+        LOGGER.log(Level.INFO, String.valueOf(nthToLast(singleGenerator(5), 2).val));
 
-        System.out.println(midpoint(singleGenerator(5)).val);
+        // System.out.println(midpoint(singleGenerator(5)).val);
+        LOGGER.log(Level.INFO, String.valueOf(midpoint(singleGenerator(5)).val));
 
         l = new SinglyLinkedListNode(1);
         l.next = new SinglyLinkedListNode(1);
         l.next.next = new SinglyLinkedListNode(2);
         l.next.next.next = new SinglyLinkedListNode(3);
         l.next.next.next.next = new SinglyLinkedListNode(1);
-        printSingle(removeAll(l, 1));
+        // printSingle(removeAll(l, 1));
+        LOGGER.log(Level.INFO, printSingle(removeAll(l, 1)));
 
         l = singleGenerator(5);
         l.next.next.next.next.next = l.next.next;
-        System.out.println(hasCycleNaive(l));
-        System.out.println(hasCycle(l));
+        // System.out.println(hasCycleNaive(l));
+        LOGGER.log(Level.INFO, String.valueOf(hasCycleNaive(l)));
+        // System.out.println(hasCycle(l));
+        LOGGER.log(Level.INFO, String.valueOf(hasCycle(l)));
     }
 }

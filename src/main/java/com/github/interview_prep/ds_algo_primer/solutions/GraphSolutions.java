@@ -18,8 +18,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class GraphSolutions {
+
+    private static final Logger LOGGER = Logger.getLogger(GraphSolutions.class.getName());
 
     /*
      * Exercise 1.1: Given the following graph (see workbook), write out by hand
@@ -869,17 +873,29 @@ public class GraphSolutions {
         AdjacencyMatrix am = new AdjacencyMatrix(4);
         am.addEdge(1, 2);
         am.addEdge(1, 3);
-        System.out.println(am.neighbors(1));
+        // System.out.println(am.neighbors(1));
+        am.neighbors(1).forEach(i -> LOGGER.log(Level.INFO, String.valueOf(i)));
 
         AdjacencyList al = new AdjacencyList(4);
         al.addEdge(1, 2);
         al.addEdge(1, 3);
-        System.out.println(al.neighbors(1));
+        // System.out.println(al.neighbors(1));
+        al.neighbors(1).forEach(i -> LOGGER.log(Level.INFO, String.valueOf(i)));
 
-        System.out.println(adjacencyMatrixToList(am.matrix));
+        // System.out.println(adjacencyMatrixToList(am.matrix));
+        List<Set<Integer>> adjacencyMatrixLst = adjacencyMatrixToList(am.matrix);
+        Integer[][] adjacencyMatrixArr =
+                adjacencyMatrixLst.stream()
+                        .map(arr -> arr.toArray(Integer[]::new))
+                        .toArray(Integer[][]::new);
+        LOGGER.log(Level.INFO, Arrays.deepToString(adjacencyMatrixArr));
 
         boolean[][] matrix = adjacencyListToMatrix(al.edges);
-        for (boolean[] m : matrix) System.out.println(Arrays.toString(m));
+        // LOGGER.log(Level.INFO, Arrays.deepToString(matrix));
+        for (boolean[] m : matrix) {
+            // System.out.println(Arrays.toString(m));
+            LOGGER.log(Level.INFO, Arrays.toString(m));
+        }
 
         List<List<Integer>> adjList = new ArrayList<>();
         adjList.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {1, 2})));
@@ -888,8 +904,10 @@ public class GraphSolutions {
         adjList.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {4, 5})));
         adjList.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {3, 5})));
         adjList.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {3, 4})));
-        System.out.println(validPathList(6, adjList, 0, 1));
-        System.out.println(validPathList(6, adjList, 0, 5));
+        // System.out.println(validPathList(6, adjList, 0, 1));
+        LOGGER.log(Level.INFO, String.valueOf(validPathList(6, adjList, 0, 1)));
+        // System.out.println(validPathList(6, adjList, 0, 5));
+        LOGGER.log(Level.INFO, String.valueOf(validPathList(6, adjList, 0, 5)));
 
         boolean[][] adjMatrix =
                 new boolean[][] {
@@ -901,29 +919,45 @@ public class GraphSolutions {
                     {false, false, false, true, true, false}
                 };
 
-        System.out.println(validPathMatrix(6, adjMatrix, 0, 1));
-        System.out.println(validPathMatrix(6, adjMatrix, 0, 5));
+        // System.out.println(validPathMatrix(6, adjMatrix, 0, 1));
+        LOGGER.log(Level.INFO, String.valueOf(validPathMatrix(6, adjMatrix, 0, 1)));
+        // System.out.println(validPathMatrix(6, adjMatrix, 0, 5));
+        LOGGER.log(Level.INFO, String.valueOf(validPathMatrix(6, adjMatrix, 0, 5)));
 
         adjList.get(2).add(4);
-        System.out.println(lengthOfShortestPath(adjList, 0, 5));
-        System.out.println(shortestPath(adjList, 0, 5));
-        System.out.println(allPaths(adjList, 0, 5));
+        // System.out.println(lengthOfShortestPath(adjList, 0, 5));
+        LOGGER.log(Level.INFO, String.valueOf(lengthOfShortestPath(adjList, 0, 5)));
+        // System.out.println(shortestPath(adjList, 0, 5));
+        LOGGER.log(Level.INFO, String.valueOf(shortestPath(adjList, 0, 5)));
+        // System.out.println(allPaths(adjList, 0, 5));
+        LOGGER.log(Level.INFO, String.valueOf(allPaths(adjList, 0, 5)));
 
-        System.out.println(courseScheduling(4, new int[][] {{1, 0}, {2, 0}, {3, 1}, {3, 2}}));
+        // System.out.println(courseScheduling(4, new int[][] {{1, 0}, {2, 0}, {3, 1}, {3, 2}}));
+        LOGGER.log(
+                Level.INFO,
+                String.valueOf(courseScheduling(4, new int[][] {{1, 0}, {2, 0}, {3, 1}, {3, 2}})));
 
-        System.out.println(
+        // System.out.println(
+        //         Arrays.toString(
+        //                 courseSchedulingII(4, new int[][] { { 1, 0 }, { 2, 0 }, { 3, 1 }, { 3, 2
+        // } })));
+        LOGGER.log(
+                Level.INFO,
                 Arrays.toString(
                         courseSchedulingII(4, new int[][] {{1, 0}, {2, 0}, {3, 1}, {3, 2}})));
 
-        System.out.println(alienDictionary(new String[] {"wrt", "wrf", "er", "ett", "rftt"}));
-        System.out.println(alienDictionary(new String[] {"ac", "ab", "zc", "zb"}));
+        // System.out.println(alienDictionary(new String[] { "wrt", "wrf", "er", "ett", "rftt" }));
+        LOGGER.log(Level.INFO, alienDictionary(new String[] {"wrt", "wrf", "er", "ett", "rftt"}));
+        // System.out.println(alienDictionary(new String[] { "ac", "ab", "zc", "zb" }));
+        LOGGER.log(Level.INFO, alienDictionary(new String[] {"ac", "ab", "zc", "zb"}));
 
         List<List<Integer>> rooms = new LinkedList<>();
         rooms.add(Arrays.asList(new Integer[] {1}));
         rooms.add(Arrays.asList(new Integer[] {2}));
         rooms.add(Arrays.asList(new Integer[] {3}));
         rooms.add(Arrays.asList(new Integer[] {}));
-        System.out.println(keysAndRooms(rooms));
+        // System.out.println(keysAndRooms(rooms));
+        LOGGER.log(Level.INFO, String.valueOf(keysAndRooms(rooms)));
 
         List<List<String>> equations = new LinkedList<>();
         equations.add(Arrays.asList(new String[] {"a", "b"}));
@@ -936,10 +970,15 @@ public class GraphSolutions {
         queries.add(Arrays.asList(new String[] {"a", "a"}));
         queries.add(Arrays.asList(new String[] {"x", "x"}));
 
-        System.out.println(
+        // System.out.println(Arrays.toString(evaluateDivision(equations, new double[] { 2.0, 3.0 },
+        // queries)));
+        LOGGER.log(
+                Level.INFO,
                 Arrays.toString(evaluateDivision(equations, new double[] {2.0, 3.0}, queries)));
 
-        System.out.println(slidingPuzzle(new int[][] {{1, 2, 3}, {4, 0, 5}}));
-        System.out.println(slidingPuzzle(new int[][] {{1, 2, 3}, {5, 4, 0}}));
+        // System.out.println(slidingPuzzle(new int[][] { { 1, 2, 3 }, { 4, 0, 5 } }));
+        LOGGER.log(Level.INFO, String.valueOf(slidingPuzzle(new int[][] {{1, 2, 3}, {4, 0, 5}})));
+        // System.out.println(slidingPuzzle(new int[][] { { 1, 2, 3 }, { 5, 4, 0 } }));
+        LOGGER.log(Level.INFO, String.valueOf(slidingPuzzle(new int[][] {{1, 2, 3}, {5, 4, 0}})));
     }
 }

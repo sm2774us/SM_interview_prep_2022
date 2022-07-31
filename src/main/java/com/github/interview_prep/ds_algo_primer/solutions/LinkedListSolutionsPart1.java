@@ -10,7 +10,12 @@ package com.github.interview_prep.ds_algo_primer.solutions;
  *   Execution: javac LinkedListSolutionsPart1.java && java -ea LinkedListSolutionsPart1
  */
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class LinkedListSolutionsPart1 {
+
+    private static final Logger LOGGER = Logger.getLogger(LinkedListSolutionsPart1.class.getName());
 
     // Exercise 1.1: Implement a singly-linked list
 
@@ -246,18 +251,28 @@ public class LinkedListSolutionsPart1 {
     public static void main(String[] args) {
         SinglyLinkedList l = new SinglyLinkedList();
         for (int i = 6; i > 0; i--) l.insert(i);
-        System.out.println(l);
-        System.out.println(l.delete(1));
-        System.out.println(l.delete(4));
-        System.out.println(l);
-        System.out.println(l.size());
+        // System.out.println(l);
+        LOGGER.log(Level.INFO, l.toString());
+        // System.out.println(l.delete(1));
+        LOGGER.log(Level.INFO, String.valueOf(l.delete(1)));
+        // System.out.println(l.delete(4));
+        LOGGER.log(Level.INFO, String.valueOf(l.delete(4)));
+        // System.out.println(l);
+        LOGGER.log(Level.INFO, l.toString());
+        // System.out.println(l.size());
+        LOGGER.log(Level.INFO, String.valueOf(l.size()));
 
         DoublyLinkedList d = new DoublyLinkedList();
         for (int i = 6; i > 0; i--) d.insert(i);
-        System.out.println(d);
-        System.out.println(d.delete(1));
-        System.out.println(d.delete(4));
-        System.out.println(d);
-        System.out.println(d.size());
+        // System.out.println(d);
+        LOGGER.log(Level.INFO, d.toString());
+        // System.out.println(d.delete(1));
+        LOGGER.log(Level.INFO, String.valueOf(d.delete(1)));
+        // System.out.println(d.delete(4));
+        LOGGER.log(Level.INFO, String.valueOf(d.delete(4)));
+        // System.out.println(d);
+        LOGGER.log(Level.INFO, d.toString());
+        // System.out.println(d.size());
+        LOGGER.log(Level.INFO, String.valueOf(d.size()));
     }
 }
