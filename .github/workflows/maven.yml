@@ -43,6 +43,7 @@ jobs:
       run: chmod +x gradlew && ./gradlew spotlessJavaCheck test jacocoTestReport sonarqube -Dsonar.projectKey=sm2774us_SM_interview_prep_2022 -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=sm2774us
     - uses: codecov/codecov-action@v1
       with:
+        token: ${{ secrets.CODECOV_TOKEN }}
         file: ./**/target/site/jacoco/jacoco.xml
         name: codecov
 
