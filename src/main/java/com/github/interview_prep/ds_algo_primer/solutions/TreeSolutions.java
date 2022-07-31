@@ -18,8 +18,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Stack;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class TreeSolutions {
+
+    private static final Logger LOGGER = Logger.getLogger(TreeSolutions.class.getName());
 
     /*
      * Exercise 1.1: Implement a Binary Search Tree class
@@ -1014,22 +1018,30 @@ public class TreeSolutions {
         t.insert(7);
         t.insert(1);
         t.insert(6);
-        System.out.println(t);
-        System.out.println(t.contains(2));
+        // System.out.println(t);
+        LOGGER.log(Level.INFO, t.toString());
+        // System.out.println(t.contains(2));
         t.delete(5);
-        System.out.println(t);
+        // System.out.println(t);
+        LOGGER.log(Level.INFO, t.toString());
         String ser = BinarySearchTree.serialize(t);
-        System.out.println(ser);
-        System.out.println(BinarySearchTree.deserialize(ser));
+        // System.out.println(ser);
+        LOGGER.log(Level.INFO, ser);
+        // System.out.println(BinarySearchTree.deserialize(ser));
+        LOGGER.log(Level.INFO, BinarySearchTree.deserialize(ser).toString());
 
         Trie s = new Trie();
         s.insert("test");
         s.insert("tester");
         s.insert("rest");
-        System.out.println(s);
-        System.out.println(s.contains("test"));
-        System.out.println(s.contains("teste"));
-        System.out.println(s.prefix("test"));
+        // System.out.println(s);
+        LOGGER.log(Level.INFO, s.toString());
+        // System.out.println(s.contains("test"));
+        LOGGER.log(Level.INFO, String.valueOf(s.contains("test")));
+        // System.out.println(s.contains("teste"));
+        LOGGER.log(Level.INFO, String.valueOf(s.contains("teste")));
+        // System.out.println(s.prefix("test"));
+        s.prefix("test").forEach(e -> LOGGER.log(Level.INFO, e));
 
         TreeNode root = new TreeNode(5);
         root.left = new TreeNode(3);
@@ -1039,35 +1051,111 @@ public class TreeSolutions {
         root.right.left = new TreeNode(7);
         root.right.right = new TreeNode(9);
 
-        System.out.println(inOrderTraversalRecursive(root));
-        System.out.println(inOrderTraversalIterative(root));
+        // System.out.println(inOrderTraversalRecursive(root));
+        inOrderTraversalRecursive(root).forEach(i -> LOGGER.log(Level.INFO, String.valueOf(i)));
+        // System.out.println(inOrderTraversalIterative(root));
+        inOrderTraversalIterative(root).forEach(i -> LOGGER.log(Level.INFO, String.valueOf(i)));
 
-        System.out.println(preOrderTraversalRecursive(root));
-        System.out.println(preOrderTraversalIterative(root));
+        // System.out.println(preOrderTraversalRecursive(root));
+        preOrderTraversalRecursive(root).forEach(i -> LOGGER.log(Level.INFO, String.valueOf(i)));
+        // System.out.println(preOrderTraversalIterative(root));
+        preOrderTraversalIterative(root).forEach(i -> LOGGER.log(Level.INFO, String.valueOf(i)));
 
-        System.out.println(postOrderTraversalRecursive(root));
-        System.out.println(postOrderTraversalIterative(root));
+        // System.out.println(postOrderTraversalRecursive(root));
+        postOrderTraversalRecursive(root).forEach(i -> LOGGER.log(Level.INFO, String.valueOf(i)));
+        // System.out.println(postOrderTraversalIterative(root));
+        postOrderTraversalIterative(root).forEach(i -> LOGGER.log(Level.INFO, String.valueOf(i)));
 
-        System.out.println(levelOrderTraversalRecursive(root));
-        System.out.println(levelOrderTraversalIterative(root));
+        // System.out.println(levelOrderTraversalRecursive(root));
+        levelOrderTraversalRecursive(root).forEach(i -> LOGGER.log(Level.INFO, String.valueOf(i)));
+        // System.out.println(levelOrderTraversalIterative(root));
+        levelOrderTraversalIterative(root).forEach(i -> LOGGER.log(Level.INFO, String.valueOf(i)));
 
-        System.out.println(containsValue(root, 4));
-        System.out.println(pathToNode(root, 4));
+        // System.out.println(containsValue(root, 4));
+        LOGGER.log(Level.INFO, String.valueOf(containsValue(root, 4)));
+        // System.out.println(pathToNode(root, 4));
+        pathToNode(root, 4).forEach(i -> LOGGER.log(Level.INFO, String.valueOf(i)));
 
-        System.out.println(maxDepth(root));
-        System.out.println(lowestCommonAncestor(root, root.left.left, root.left).val);
-        System.out.println(isBalanced(root));
+        // System.out.println(maxDepth(root));
+        LOGGER.log(Level.INFO, String.valueOf(maxDepth(root)));
+        // System.out.println(lowestCommonAncestor(root, root.left.left, root.left).val);
+        LOGGER.log(
+                Level.INFO,
+                String.valueOf(lowestCommonAncestor(root, root.left.left, root.left).val));
+        // System.out.println(isBalanced(root));
+        LOGGER.log(Level.INFO, String.valueOf(isBalanced(root)));
 
         TreeNode root2 = new TreeNode(3);
         root2.left = new TreeNode(2);
         root2.left.left = new TreeNode(4);
         root2.left.left.right = new TreeNode(5);
-        System.out.println(mergeTrees(root, root2).val);
+        // System.out.println(mergeTrees(root, root2).val);
+        LOGGER.log(Level.INFO, String.valueOf(mergeTrees(root, root2).val));
 
-        System.out.println(invertTree(root).left.val);
+        // System.out.println(invertTree(root).val);
+        // System.out.println(invertTree(root).left.val);
+        LOGGER.log(Level.INFO, String.valueOf(invertTree(root).val));
+        LOGGER.log(Level.INFO, String.valueOf(invertTree(root).left.val));
 
-        System.out.println(diameterOfBinaryTree(root));
+        // System.out.println(diameterOfBinaryTree(root));
 
-        System.out.println(treeToList(root));
+        //           5
+        //        /    \
+        //       3      8
+        //    /   \   /   \
+        //   1    4  7     9
+        //
+        // <- 1 <-> 3 <-> 4 <-> 5 <-> 7 <-> 8 <-> 9 ->
+        TreeNode node = treeToList(root);
+        // 1
+        // System.out.println(node.val);
+        LOGGER.log(Level.INFO, String.valueOf(node.val));
+        // 3
+        // System.out.println(node.right.val);
+        LOGGER.log(Level.INFO, String.valueOf(node.right.val));
+        // 4
+        // System.out.println(node.right.right.val);
+        LOGGER.log(Level.INFO, String.valueOf(node.right.right.val));
+        // 9
+        // System.out.println(node.left.val);
+        LOGGER.log(Level.INFO, String.valueOf(node.left.val));
+        // 8
+        // System.out.println(node.left.left.val);
+        LOGGER.log(Level.INFO, String.valueOf(node.left.left.val));
+        // 7
+        // System.out.println(node.left.left.left.val);
+        LOGGER.log(Level.INFO, String.valueOf(node.left.left.left.val));
+        // 5
+        // System.out.println(node.right.right.right.val);
+        LOGGER.log(Level.INFO, String.valueOf(node.left.left.left.val));
+        // 5
+        // System.out.println(node.left.left.left.left.val);
+        LOGGER.log(Level.INFO, String.valueOf(node.left.left.left.left.val));
+        // true
+        // System.out.println(node.right.right.right.val == node.left.left.left.left.val);
+        LOGGER.log(
+                Level.INFO,
+                String.valueOf(node.right.right.right.val == node.left.left.left.left.val));
+        // [1, 3, 4, 5, 9, 8, 7]
+        // System.out.println(
+        //     Arrays.asList(
+        //         node.val,
+        //         node.right.val,
+        //         node.right.right.val,
+        //         node.right.right.right.val,
+        //         node.left.val,
+        //         node.left.left.val,
+        //         node.left.left.left.val
+        //     )
+        // );
+        Arrays.asList(
+                        node.val,
+                        node.right.val,
+                        node.right.right.val,
+                        node.right.right.right.val,
+                        node.left.val,
+                        node.left.left.val,
+                        node.left.left.left.val)
+                .forEach(i -> LOGGER.log(Level.INFO, String.valueOf(i)));
     }
 }
