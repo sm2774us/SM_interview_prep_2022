@@ -7,8 +7,9 @@ package com.github.interview_prep.ds_algo_primer.solutions;
  *   we highly recommend you complete them before reviewing the solutions here.
  *
  */
-
-import java.util.*;
+import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
