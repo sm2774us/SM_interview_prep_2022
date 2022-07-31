@@ -27,7 +27,7 @@ test {
 group = 'com.github.interview_prep'
 version = '1.12-SNAPSHOT'
 description = 'leetcode-in-java'
-java.sourceCompatibility = JavaVersion.VERSION_17
+java.sourceCompatibility = JavaVersion.VERSION_11
 
 java {
     withSourcesJar()
