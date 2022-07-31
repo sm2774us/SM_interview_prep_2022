@@ -42,7 +42,7 @@ public class HeapSolutions {
             data.add(x);
 
             // We could do this inline or break it out into a separate function
-            this.bubbleUp(data.size()-1);
+            this.bubbleUp(data.size() - 1);
         }
 
         /*
@@ -71,7 +71,7 @@ public class HeapSolutions {
 
             // We replace the root of our tree with the last value in the tree,
             // then we bubble down until our constraints are satisfied
-            data.set(0, data.remove(data.size()-1));
+            data.set(0, data.remove(data.size() - 1));
 
             // We could do this inline or break it out
             this.bubbleDown(0);
@@ -112,7 +112,7 @@ public class HeapSolutions {
         private static int parent(int i) {
             // It is easy to determine this formula by experimenting with
             // specific examples
-            return (i + 1)/2 - 1;
+            return (i + 1) / 2 - 1;
         }
 
         /*
@@ -167,7 +167,7 @@ public class HeapSolutions {
         private void bubbleDown(int i) {
             // Get the two children of the current index
             int left = leftChild(i);
-            int right = leftChild(i)+1;
+            int right = leftChild(i) + 1;
 
             if (left >= data.size()) return;
 
@@ -204,9 +204,9 @@ public class HeapSolutions {
         // We just have to check if each index is less than it's children. It is
         // a little easier for bounds-checking if we start at the end of the
         // array and work backwards but either way works
-        for (int i = heap.length-1; i > 0; i--) {
+        for (int i = heap.length - 1; i > 0; i--) {
             // This is the same formula from parent()
-            if (heap[i] < heap[(i+1)/2 - 1]) return false;
+            if (heap[i] < heap[(i + 1) / 2 - 1]) return false;
         }
 
         return true;
@@ -307,7 +307,7 @@ public class HeapSolutions {
         // do this is to create a custom comparator. That way we can sort our
         // heap directly by distance from the origin
         Comparator<int[]> distanceFromOrigin =
-            Comparator.comparing(point -> point[0]*point[0] + point[1]*point[1]);
+                Comparator.comparing(point -> point[0] * point[0] + point[1] * point[1]);
 
         // Create a heap. We want a min heap, so we need to reverse our comparator
         PriorityQueue<int[]> closest = new PriorityQueue<>(distanceFromOrigin.reversed());
@@ -370,7 +370,7 @@ public class HeapSolutions {
 
             // Once we've added the number, we need to rebalance the two heaps
             // to maintain an equal number of values on each side of the median
-            while(smallerHalf.size() > largerHalf.size()) {
+            while (smallerHalf.size() > largerHalf.size()) {
                 largerHalf.add(smallerHalf.remove());
             }
             while (smallerHalf.size() < largerHalf.size()) {
@@ -391,7 +391,7 @@ public class HeapSolutions {
             if (smallerHalf.size() > largerHalf.size()) return smallerHalf.peek();
 
             // Otherwise, just average the two middle values
-            return (smallerHalf.peek() + largerHalf.peek())/2.0;
+            return (smallerHalf.peek() + largerHalf.peek()) / 2.0;
         }
     }
 
@@ -403,7 +403,8 @@ public class HeapSolutions {
      */
     public static ListNode mergeKLists(ListNode[] lists) {
         // Create a heap that compares ListNodes by size
-        PriorityQueue<ListNode> currentNodes = new PriorityQueue<>(Comparator.comparing(node -> node.val));
+        PriorityQueue<ListNode> currentNodes =
+                new PriorityQueue<>(Comparator.comparing(node -> node.val));
 
         // Our smallest node overall has to be the first node in one of our
         // lists since the lists are sorted. Add all these first nodes to the
@@ -446,7 +447,6 @@ public class HeapSolutions {
         }
     }
 
-
     // Test cases
     public static void main(String[] args) {
         MinHeap m = new MinHeap();
@@ -461,20 +461,20 @@ public class HeapSolutions {
         m.insert(3);
         System.out.println(m);
 
-        System.out.println(isValid(new int[]{1,3,2,4,6,5,0}));
-        System.out.println(isValid(new int[]{1,3,2,6,5}));
+        System.out.println(isValid(new int[] {1, 3, 2, 4, 6, 5, 0}));
+        System.out.println(isValid(new int[] {1, 3, 2, 6, 5}));
 
-        System.out.println(findMax(new int[]{1,3,2,4,6,5,0}));
+        System.out.println(findMax(new int[] {1, 3, 2, 4, 6, 5, 0}));
 
-        System.out.println(Arrays.toString(heapSort(new int[]{1,3,2,4,6,5,0})));
+        System.out.println(Arrays.toString(heapSort(new int[] {1, 3, 2, 4, 6, 5, 0})));
 
-        KthLargest kth = new KthLargest(3, new int[]{4,5,8,2});
+        KthLargest kth = new KthLargest(3, new int[] {4, 5, 8, 2});
         System.out.println(kth.add(3));
         System.out.println(kth.add(5));
         System.out.println(kth.add(10));
         System.out.println(kth.add(9));
 
-        int[][] points = new int[][]{new int[]{3,3}, new int[]{5,-1}, new int[]{-2,4}};
+        int[][] points = new int[][] {new int[] {3, 3}, new int[] {5, -1}, new int[] {-2, 4}};
         int[][] closest = kClosest(points, 2);
         for (int[] point : closest) System.out.println(Arrays.toString(point));
 

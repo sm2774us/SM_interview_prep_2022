@@ -339,7 +339,7 @@ public class TreeSolutions {
             }
 
             curr = curr.children.get(currChar);
-            insert(s, curr, idx+1);
+            insert(s, curr, idx + 1);
         }
 
         /*
@@ -654,7 +654,8 @@ public class TreeSolutions {
     /*
      * Inner recursive function
      */
-    private static void levelOrderTraversalRecursive(TreeNode curr, List<List<Integer>> levels, int level) {
+    private static void levelOrderTraversalRecursive(
+            TreeNode curr, List<List<Integer>> levels, int level) {
         if (curr == null) return;
 
         // If this is the first node in this level, we need to create a new list
@@ -667,8 +668,8 @@ public class TreeSolutions {
         currLevel.add(curr.val);
 
         // Continue our recursion
-        levelOrderTraversalRecursive(curr.left, levels, level+1);
-        levelOrderTraversalRecursive(curr.right, levels, level+1);
+        levelOrderTraversalRecursive(curr.left, levels, level + 1);
+        levelOrderTraversalRecursive(curr.right, levels, level + 1);
     }
 
     /*
@@ -958,10 +959,10 @@ public class TreeSolutions {
         // subtrees (doesn't go through the current node) or the height of the
         // left and right + 1 (does go through the current node)
         int diam = Math.max(leftDiam, rightDiam);
-        diam = Math.max(diam, leftHeight[0]+rightHeight[0]+1);
+        diam = Math.max(diam, leftHeight[0] + rightHeight[0] + 1);
 
         // Update height
-        height[0] = Math.max(leftHeight[0], rightHeight[0])+1;
+        height[0] = Math.max(leftHeight[0], rightHeight[0]) + 1;
         return diam;
     }
 

@@ -1,5 +1,4 @@
 package com.github.interview_prep.ds_algo_primer.solutions;
-import java.util.ArrayList;
 /*
  *   Title: ArraysAndStringsSolutions
  *
@@ -8,6 +7,7 @@ import java.util.ArrayList;
  *   we highly recommend you complete them before reviewing the solutions here.
  *
  */
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -19,7 +19,8 @@ import java.util.logging.Logger;
 
 public class ArraysAndStringsSolutions {
 
-    private static final Logger LOGGER = Logger.getLogger(ArraysAndStringsSolutions.class.getName());
+    private static final Logger LOGGER =
+            Logger.getLogger(ArraysAndStringsSolutions.class.getName());
 
     /*
      * Exercise 1.1: Write a function that takes an integer array and reverses
@@ -55,7 +56,7 @@ public class ArraysAndStringsSolutions {
             return s;
         }
         StringBuilder sb = new StringBuilder();
-        //Increment by 2 each time to visit only odd indices.
+        // Increment by 2 each time to visit only odd indices.
         for (int i = 0; i < s.length(); i = i + 2) {
             sb.append(s.charAt(i));
         }
@@ -71,16 +72,16 @@ public class ArraysAndStringsSolutions {
      *
      * Explaining to the interviewer:
      *
-     * By observing the example, we can find the rule to rearrange the string.    
+     * By observing the example, we can find the rule to rearrange the string.
      * Example1: s = "PAYPALISHIRING", numRows = 3
      * Input: s = "PAYPALISHIRING", numRows = 4
      * Output: "PAHNAPLSIIGYIR"
-     * Explanation:    
+     * Explanation:
      *
      * +---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-     * | P | A | Y | P | A | L | I | S | H | I | R | I | N | G | 
+     * | P | A | Y | P | A | L | I | S | H | I | R | I | N | G |
      * +---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-     * | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0 | 1 | 2 | 3 | 
+     * | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0 | 1 | 2 | 3 |
      * +---+---+---+---+---+---+---+---+---+---+---+---+---+---+
      *
      * +---+---+---+---+---+---+---+
@@ -90,9 +91,9 @@ public class ArraysAndStringsSolutions {
      * +---+---+---+---+---+---+---+
      * | Y |   | I |   | R |
      * +---+---+---+---+---+
-     * 
+     *
      * We need to rearrange the string in this way:
-     * 
+     *
      * +----+----+----+----+----+----+----+
      * | 0  |    | 4  |    | 8  |    | 12 |
      * +----+----+----+----+----+----+----+
@@ -101,9 +102,9 @@ public class ArraysAndStringsSolutions {
      * | 2  |    | 6  |    | 10 |    |    |
      * +----+----+----+----+----+----+----+
      *
-     * So we can create an array of StringBuilder, 
+     * So we can create an array of StringBuilder,
      * put the chars in the array vertically down and obliquely up. Like this:
-     * 
+     *
      * +------+----+----+----+----+----+----+----+
      * | sb0: | 0  |    | 4  |    | 8  |    | 12 |
      * +------+----+----+----+----+----+----+----+
@@ -111,16 +112,16 @@ public class ArraysAndStringsSolutions {
      * +------+----+----+----+----+----+----+----+
      * | sb2: | 2  |    | 6  |    | 10 |    |    |
      * +------+----+----+----+----+----+----+----+
-     *    
+     *
      * Example2:
      * Input: s = "PAYPALISHIRING", numRows = 4
      * Output: "PINALSIGYAHRPI"
      * Explanation:
      *
      * +---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-     * | P | A | Y | P | A | L | I | S | H | I | R | I | N | G | 
+     * | P | A | Y | P | A | L | I | S | H | I | R | I | N | G |
      * +---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-     * | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0 | 1 | 2 | 3 | 
+     * | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0 | 1 | 2 | 3 |
      * +---+---+---+---+---+---+---+---+---+---+---+---+---+---+
      *
      * +---+---+---+---+---+---+---+
@@ -132,9 +133,9 @@ public class ArraysAndStringsSolutions {
      * +---+---+---+---+---+---+---+
      * | P |   |   | I |   |   |   |
      * +---+---+---+---+---+---+---+
-     * 
+     *
      * We need to rearrange the string in this way:
-     * 
+     *
      * +----+----+----+----+----+----+----+
      * | 0  |    |    | 6  |    |    | 12 |
      * +----+----+----+----+----+----+----+
@@ -145,9 +146,9 @@ public class ArraysAndStringsSolutions {
      * | 3  |    |    | 9  |    |    |    |
      * +----+----+----+----+----+----+----+
      *
-     * So we can create an array of StringBuilder, 
+     * So we can create an array of StringBuilder,
      * put the chars in the array vertically down and obliquely up. Like this:
-     * 
+     *
      * +------+----+----+----+----+----+----+----+
      * | sb0: | 0  |    |    | 6  |    |    | 12 |
      * +------+----+----+----+----+----+----+----+
@@ -167,14 +168,14 @@ public class ArraysAndStringsSolutions {
         for (int i = 0; i < sb.length; i++) {
             sb[i] = new StringBuilder();
         }
-        
+
         int i = 0;
         while (i < len) {
             // vertically down
             for (int idx = 0; idx < numRows && i < len; idx++) {
                 sb[idx].append(c[i++]);
             }
-             // obliquely up
+            // obliquely up
             for (int idx = numRows - 2; idx >= 1 && i < len; idx--) {
                 sb[idx].append(c[i++]);
             }
@@ -194,13 +195,13 @@ public class ArraysAndStringsSolutions {
      *                                 C = number of columns ]
      * Space Complexity: O(1)
      */
-    public static int[] printBackAndForth(int[][] arr) {        
+    public static int[] printBackAndForth(int[][] arr) {
         int[] result = new int[arr.length * arr[0].length];
         int counter = 0;
         // Iterate 2 rows at a time and go across and back
-        for (int i = 0; i < arr.length; i = i+2) {
+        for (int i = 0; i < arr.length; i = i + 2) {
             for (int j = 0; j < arr[i].length; j++) {
-                //System.out.println(arr[i][j]);
+                // System.out.println(arr[i][j]);
                 LOGGER.log(Level.INFO, String.valueOf(arr[i][j]));
                 result[counter] = arr[i][j];
                 counter++;
@@ -208,11 +209,11 @@ public class ArraysAndStringsSolutions {
 
             // If iterating across to the right was the last row, end, otherwise
             // iterate back across to the right
-            if (i + 1 < arr.length) {                
+            if (i + 1 < arr.length) {
                 for (int j = arr[i + 1].length - 1; j >= 0; j--) {
-                    //System.out.println(arr[i+1][j]);
-                    LOGGER.log(Level.INFO, String.valueOf(arr[i+1][j]));
-                    result[counter] = arr[i+1][j];
+                    // System.out.println(arr[i+1][j]);
+                    LOGGER.log(Level.INFO, String.valueOf(arr[i + 1][j]));
+                    result[counter] = arr[i + 1][j];
                     counter++;
                 }
             }
@@ -235,10 +236,10 @@ public class ArraysAndStringsSolutions {
         // spiral that we are traversing
         int minRow = 0;
         int minCol = 0;
-        int maxRow = arr.length-1;
+        int maxRow = arr.length - 1;
         int maxCol = arr[0].length - 1;
         int counter = 0;
-        
+
         // Once the mins and maxes converge, we are at the center of the spiral.
         // The spiral follows a fixed set of steps. We go left, down, right, up.
         // For each of these, we just interate to the bounds, so we express each
@@ -246,7 +247,7 @@ public class ArraysAndStringsSolutions {
         while (minRow < maxRow && minCol < maxCol) {
             // Go across the top
             for (int col = minCol; col <= maxCol; col++) {
-                //System.out.println(arr[minRow][col]);
+                // System.out.println(arr[minRow][col]);
                 LOGGER.log(Level.INFO, String.valueOf(arr[minRow][col]));
                 result[counter] = arr[minRow][col];
                 counter++;
@@ -254,8 +255,8 @@ public class ArraysAndStringsSolutions {
             minRow++;
 
             // Go down the right side
-            for (int row = minRow ; row <= maxRow; row++) {
-                //System.out.println(arr[row][maxCol]);
+            for (int row = minRow; row <= maxRow; row++) {
+                // System.out.println(arr[row][maxCol]);
                 LOGGER.log(Level.INFO, String.valueOf(arr[row][maxCol]));
                 result[counter] = arr[row][maxCol];
                 counter++;
@@ -264,7 +265,7 @@ public class ArraysAndStringsSolutions {
 
             // Go across the bottom
             for (int col = maxCol; col >= minCol; col--) {
-                //System.out.println(arr[maxRow][col]);
+                // System.out.println(arr[maxRow][col]);
                 LOGGER.log(Level.INFO, String.valueOf(arr[maxRow][col]));
                 result[counter] = arr[maxRow][col];
                 counter++;
@@ -273,7 +274,7 @@ public class ArraysAndStringsSolutions {
 
             // Go up the left side
             for (int row = maxRow; row >= minRow; row--) {
-                //System.out.println(arr[row][minCol]);
+                // System.out.println(arr[row][minCol]);
                 LOGGER.log(Level.INFO, String.valueOf(arr[row][minCol]));
                 result[counter] = arr[row][minCol];
                 counter++;
@@ -304,52 +305,52 @@ public class ArraysAndStringsSolutions {
         // and the other
         while (true) {
             // Go up to the right
-            while (row > 0 && col < arr[0].length-1) {
-                //System.out.println(arr[row][col]);
+            while (row > 0 && col < arr[0].length - 1) {
+                // System.out.println(arr[row][col]);
                 LOGGER.log(Level.INFO, String.valueOf(arr[row][col]));
                 result[counter] = arr[row][col];
-                counter++;              
+                counter++;
                 row--;
                 col++;
             }
             // Without this we won't print the final value in the diagonal
-            //System.out.println(arr[row][col]);
+            // System.out.println(arr[row][col]);
             LOGGER.log(Level.INFO, String.valueOf(arr[row][col]));
             result[counter] = arr[row][col];
-            counter++;          
+            counter++;
 
             // Check whether we're at the bottom right corner
-            if (row == arr.length-1 && col == arr[0].length-1) break;
+            if (row == arr.length - 1 && col == arr[0].length - 1) break;
 
             // We need to update our positiion differently depending on whether
             // we're still going along the top of the matrix or down the
             // righthand side
-            else if (col+1 < arr[0].length) col++;
+            else if (col + 1 < arr[0].length) col++;
             else row++;
 
             // Go down to the left
-            while (row < arr.length-1 && col > 0) {
-                //System.out.println(arr[row][col]);
+            while (row < arr.length - 1 && col > 0) {
+                // System.out.println(arr[row][col]);
                 LOGGER.log(Level.INFO, String.valueOf(arr[row][col]));
                 result[counter] = arr[row][col];
-                counter++;              
+                counter++;
                 row++;
                 col--;
             }
             // Without this we won't print the final value in the diagonal
-            //System.out.println(arr[row][col]);
+            // System.out.println(arr[row][col]);
             LOGGER.log(Level.INFO, String.valueOf(arr[row][col]));
             result[counter] = arr[row][col];
-            counter++;          
+            counter++;
 
             // Check whether we're at the bottom right corner
-            if (row == arr.length-1 && col == arr[0].length-1) break;
+            if (row == arr.length - 1 && col == arr[0].length - 1) break;
 
             // Are we going along the lefthand side or the bottom?
-            else if (row+1 < arr.length) row++;
+            else if (row + 1 < arr.length) row++;
             else col++;
         }
-        return result;      
+        return result;
     }
 
     /*
@@ -361,10 +362,10 @@ public class ArraysAndStringsSolutions {
     public static List<String> printSubstrings(String s) {
         List<String> result = new ArrayList<>();
         for (int i = 0; i < s.length(); i++) {
-            for (int j = i+1; j <= s.length(); j++) {
-                //System.out.println(s.substring(i,j));
-                LOGGER.log(Level.INFO, s.substring(i,j));
-                result.add(s.substring(i,j));
+            for (int j = i + 1; j <= s.length(); j++) {
+                // System.out.println(s.substring(i,j));
+                LOGGER.log(Level.INFO, s.substring(i, j));
+                result.add(s.substring(i, j));
             }
         }
         return result;
@@ -380,7 +381,7 @@ public class ArraysAndStringsSolutions {
     public static int findDuplicates(int[] arr) {
         // Use 2 pointers to compare each pair of values
         for (int i = 0; i < arr.length; i++) {
-            for (int j = i+1; j < arr.length; j++) {
+            for (int j = i + 1; j < arr.length; j++) {
                 if (arr[i] == arr[j]) return arr[i];
             }
         }
@@ -408,31 +409,28 @@ public class ArraysAndStringsSolutions {
             // If we found the target, we add it to the result. Then we either
             // increment i or decrement j. It doesn't matter which we do
             if (sum == target) {
-                result.add(new int[] { arr[i], arr[j] });
+                result.add(new int[] {arr[i], arr[j]});
 
                 // We want to avoid including the same pair multiple times so we
                 // skip the pointer ahead to the next unique value. Since our
                 // array is sorted, we just keep incrementing until we see a
                 // new value
-                while (arr[i] == arr[i + 1])
-                    i++;
+                while (arr[i] == arr[i + 1]) i++;
                 i++;
             }
 
             // We can find a larger sum by incrementing i. This makes the
             // smaller value in our pair larger so the sum is larger
-            if (sum < target)
-                i++;
+            if (sum < target) i++;
 
             // If it's too big, we do the opposite by decrementing j
-            if (sum > target)
-                j--;
+            if (sum > target) j--;
         }
 
-        //return result;
+        // return result;
         return result.toArray(new int[result.size()][]);
     }
-    
+
     /*
      * Exercise 2.3: Given a sorted array, find every pair of values in the
      * array that sum up to a given target
@@ -445,20 +443,20 @@ public class ArraysAndStringsSolutions {
 
         // We start our pointers at the beginning and move towards the center
         int i = 0;
-        int j = arr.length-1;
+        int j = arr.length - 1;
 
         while (i < j) {
             int sum = arr[i] + arr[j];
             // If we found the target, we add it to the result. Then we either
             // increment i or decrement j. It doesn't matter which we do
             if (sum == target) {
-                result.add(new int[]{arr[i], arr[j]});
+                result.add(new int[] {arr[i], arr[j]});
 
                 // We want to avoid including the same pair multiple times so we
                 // skip the pointer ahead to the next unique value. Since our
                 // array is sorted, we just keep incrementing until we see a
                 // new value
-                while (arr[i] == arr[i+1]) i++;
+                while (arr[i] == arr[i + 1]) i++;
                 i++;
             }
 
@@ -506,7 +504,7 @@ public class ArraysAndStringsSolutions {
         // reverse one of the strings and compare them, but that takes extra
         // space whereas this does not
         for (int i = 0; i < s1.length(); i++) {
-            if (s1.charAt(i) != s2.charAt(s2.length()-i-1)) return false;
+            if (s1.charAt(i) != s2.charAt(s2.length() - i - 1)) return false;
         }
 
         return true;
@@ -528,7 +526,7 @@ public class ArraysAndStringsSolutions {
         for (char c : s1.toCharArray()) {
             int count = 1;
             if (chars.containsKey(c)) {
-                count = chars.get(c)+1;
+                count = chars.get(c) + 1;
             }
             chars.put(c, count);
         }
@@ -539,7 +537,7 @@ public class ArraysAndStringsSolutions {
             if (!chars.containsKey(c)) return false;
             int count = chars.get(c);
             if (count == 0) return false;
-            chars.put(c, count-1);
+            chars.put(c, count - 1);
         }
 
         return true;
@@ -563,19 +561,17 @@ public class ArraysAndStringsSolutions {
         // Use a sliding window to go through the remainder of the array without
         // recomputing the sum for every subarray
         int left = 0;
-        int right = k-1;
-        while (right < arr.length-1) {
+        int right = k - 1;
+        while (right < arr.length - 1) {
             // The value at right+1 needs to be added to the sum and the value
             // at left needs to be subtracted
             sum += arr[++right];
             sum -= arr[left++];
             result[left] = sum;
-
         }
 
         return result;
     }
-
 
     /*
      * Exercise 4.2: Given a string, find the longest substring of the string
@@ -603,7 +599,7 @@ public class ArraysAndStringsSolutions {
             }
 
             // We have a valid substring so is it the longest one?
-            maxSubstring = Math.max(maxSubstring, right-left+1);
+            maxSubstring = Math.max(maxSubstring, right - left + 1);
 
             // Try expanding the substring again
             inSubstring.add(s.charAt(right++));
@@ -648,7 +644,7 @@ public class ArraysAndStringsSolutions {
             // If we have the exact right number of occurrences of the character
             // AND the substring is the right length, then this is a valid
             // substring
-            if (chars[rightChar] == 0 && right-left == p.length()) result.add(left);
+            if (chars[rightChar] == 0 && right - left == p.length()) result.add(left);
         }
 
         return result;
@@ -692,7 +688,7 @@ public class ArraysAndStringsSolutions {
             // keep shrinking it as much as we can by incrementing left
             while (count == p.length()) {
                 if (right - left < minLength) {
-                    minLength = right-left;
+                    minLength = right - left;
                     minStart = left;
                 }
 
@@ -707,20 +703,20 @@ public class ArraysAndStringsSolutions {
         // If we don't find a valid substring, return ""
         if (minLength > s.length()) return "";
 
-        return s.substring(minStart, minStart+minLength);
+        return s.substring(minStart, minStart + minLength);
     }
 
     // Sample test cases
     public static void main(String[] args) {
-        int[] toReverse = new int[] { 1, 2, 3, 4, 5 };
+        int[] toReverse = new int[] {1, 2, 3, 4, 5};
         reverseArray(toReverse);
-        //System.out.println(Arrays.toString(toReverse));
+        // System.out.println(Arrays.toString(toReverse));
         LOGGER.log(Level.INFO, Arrays.toString(toReverse));
 
-        //System.out.println(removeEven("iloveinterviewprep"));
+        // System.out.println(removeEven("iloveinterviewprep"));
         LOGGER.log(Level.INFO, removeEven("iloveinterviewprep"));
 
-        //System.out.println(zigZag("PAYPALISHIRING", 3));
+        // System.out.println(zigZag("PAYPALISHIRING", 3));
         LOGGER.log(Level.INFO, zigZag("PAYPALISHIRING", 3));
 
         int[][] matrix = new int[4][5];
@@ -731,57 +727,60 @@ public class ArraysAndStringsSolutions {
             }
         }
 
-        //System.out.println(Arrays.deepToString(matrix));
+        // System.out.println(Arrays.deepToString(matrix));
         LOGGER.log(Level.INFO, Arrays.deepToString(matrix));
 
         printBackAndForth(matrix);
 
-        //System.out.println(Arrays.deepToString(matrix));
+        // System.out.println(Arrays.deepToString(matrix));
         LOGGER.log(Level.INFO, Arrays.deepToString(matrix));
 
         printSpiral(matrix);
 
-        //System.out.println(Arrays.deepToString(matrix));
+        // System.out.println(Arrays.deepToString(matrix));
         LOGGER.log(Level.INFO, Arrays.deepToString(matrix));
 
         printDiagonals(matrix);
 
-        //printSubstrings("abc");
-        //printSubstrings("abcd");
+        // printSubstrings("abc");
+        // printSubstrings("abcd");
         LOGGER.log(Level.INFO, Arrays.deepToString(matrix));
         printSubstrings("abcd").forEach(s -> LOGGER.log(Level.INFO, s));
 
-        //System.out.println(findDuplicates(new int[] { 1, 2, 3, 2, 4 }));
-        LOGGER.log(Level.INFO, String.valueOf(findDuplicates(new int[] { 1, 2, 3, 2, 4 })));
+        // System.out.println(findDuplicates(new int[] { 1, 2, 3, 2, 4 }));
+        LOGGER.log(Level.INFO, String.valueOf(findDuplicates(new int[] {1, 2, 3, 2, 4})));
 
-        int[] arr = new int[]{1,2,2,2,3,4,5,6,6,6};
-        //System.out.println(Arrays.deepToString(twoSum(arr, 8)));
+        int[] arr = new int[] {1, 2, 2, 2, 3, 4, 5, 6, 6, 6};
+        // System.out.println(Arrays.deepToString(twoSum(arr, 8)));
         LOGGER.log(Level.INFO, Arrays.deepToString(twoSum(arr, 8)));
         List<int[]> twoSum = twoSumLst(arr, 8);
         for (int[] a : twoSum) {
-            //System.out.println(Arrays.toString(a));
+            // System.out.println(Arrays.toString(a));
             LOGGER.log(Level.INFO, Arrays.toString(a));
         }
-        
-        //System.out.println(arraysAreEqual(new int[] { 1, 2, 3 }, new int[] { 1, 2, 3 }));
-        LOGGER.log(Level.INFO, String.valueOf(arraysAreEqual(new int[] { 1, 2, 3 }, new int[] { 1, 2, 3 })));
-        
-        //System.out.println(stringsAreOpposite("abcde", "edcba"));
+
+        // System.out.println(arraysAreEqual(new int[] { 1, 2, 3 }, new int[] { 1, 2, 3 }));
+        LOGGER.log(
+                Level.INFO,
+                String.valueOf(arraysAreEqual(new int[] {1, 2, 3}, new int[] {1, 2, 3})));
+
+        // System.out.println(stringsAreOpposite("abcde", "edcba"));
         LOGGER.log(Level.INFO, String.valueOf(stringsAreOpposite("abcde", "edcba")));
 
-        //System.out.println(areAnagrams("ababc", "cbaab"));
+        // System.out.println(areAnagrams("ababc", "cbaab"));
         LOGGER.log(Level.INFO, String.valueOf(areAnagrams("ababc", "cbaab")));
 
-        //System.out.println(Arrays.toString(subarraySums(new int[] { 1, 2, 3, 4, 5 }, 3)));
-        LOGGER.log(Level.INFO, Arrays.toString(subarraySums(new int[] { 1, 2, 3, 4, 5 }, 3)));
-        
-        //System.out.println(noRepeatedChars("abcbabcd"));
+        // System.out.println(Arrays.toString(subarraySums(new int[] { 1, 2, 3, 4, 5 }, 3)));
+        LOGGER.log(Level.INFO, Arrays.toString(subarraySums(new int[] {1, 2, 3, 4, 5}, 3)));
+
+        // System.out.println(noRepeatedChars("abcbabcd"));
         LOGGER.log(Level.INFO, String.valueOf(noRepeatedChars("abcbabcd")));
 
-        //System.out.println(findAllAnagrams("cbaebabacd", "abc"));
-        findAllAnagrams("cbaebabacd", "abc").forEach(i -> LOGGER.log(Level.INFO, String.valueOf(i)));
+        // System.out.println(findAllAnagrams("cbaebabacd", "abc"));
+        findAllAnagrams("cbaebabacd", "abc")
+                .forEach(i -> LOGGER.log(Level.INFO, String.valueOf(i)));
 
-        //System.out.println(smallestSubstring("aabbccdd", "abc"));
+        // System.out.println(smallestSubstring("aabbccdd", "abc"));
         LOGGER.log(Level.INFO, smallestSubstring("aabbccdd", "abc"));
     }
 }

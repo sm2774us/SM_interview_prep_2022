@@ -69,8 +69,10 @@ public class GraphSolutions {
          * Space Complexity: O(1)
          */
         public void addEdge(int node1, int node2) {
-            if (node1 < 0 || node1 >= this.matrix.length ||
-                node2 < 0 || node2 > this.matrix.length) {
+            if (node1 < 0
+                    || node1 >= this.matrix.length
+                    || node2 < 0
+                    || node2 > this.matrix.length) {
                 throw new IndexOutOfBoundsException();
             }
 
@@ -85,8 +87,10 @@ public class GraphSolutions {
          * Space Complexity: O(1)
          */
         public void removeEdge(int node1, int node2) {
-            if (node1 < 0 || node1 >= this.matrix.length ||
-                node2 < 0 || node2 > this.matrix.length) {
+            if (node1 < 0
+                    || node1 >= this.matrix.length
+                    || node2 < 0
+                    || node2 > this.matrix.length) {
                 throw new IndexOutOfBoundsException();
             }
 
@@ -144,8 +148,7 @@ public class GraphSolutions {
          * Space Complexity: O(1)
          */
         public void addEdge(int node1, int node2) {
-            if (node1 < 0 || node1 >= this.edges.size() ||
-                node2 < 0 || node2 > this.edges.size()) {
+            if (node1 < 0 || node1 >= this.edges.size() || node2 < 0 || node2 > this.edges.size()) {
                 throw new IndexOutOfBoundsException();
             }
 
@@ -159,8 +162,7 @@ public class GraphSolutions {
          * Space Complexity: O(1)
          */
         public void removeEdge(int node1, int node2) {
-            if (node1 < 0 || node1 >= this.edges.size() ||
-                node2 < 0 || node2 > this.edges.size()) {
+            if (node1 < 0 || node1 >= this.edges.size() || node2 < 0 || node2 > this.edges.size()) {
                 throw new IndexOutOfBoundsException();
             }
 
@@ -175,16 +177,16 @@ public class GraphSolutions {
          * Time Complexity: O(n)
          * Space Complexity: O(1)
          */
-         public List<Integer> neighbors(int node) {
-             if (node < 0 || node >= this.edges.size()) {
-                 throw new IndexOutOfBoundsException();
-             }
+        public List<Integer> neighbors(int node) {
+            if (node < 0 || node >= this.edges.size()) {
+                throw new IndexOutOfBoundsException();
+            }
 
-             // Get the set of edges and add it to a list
-             List<Integer> result = new LinkedList<>();
-             result.addAll(this.edges.get(node));
-             return result;
-         }
+            // Get the set of edges and add it to a list
+            List<Integer> result = new LinkedList<>();
+            result.addAll(this.edges.get(node));
+            return result;
+        }
     }
 
     /*
@@ -239,14 +241,17 @@ public class GraphSolutions {
     public class Node {
         public int val;
         public List<Node> neighbors;
+
         public Node() {
             val = 0;
             neighbors = new ArrayList<Node>();
         }
+
         public Node(int _val) {
             val = _val;
             neighbors = new ArrayList<Node>();
         }
+
         public Node(int _val, ArrayList<Node> _neighbors) {
             val = _val;
             neighbors = _neighbors;
@@ -317,7 +322,8 @@ public class GraphSolutions {
         return validPathList(n, edges, start, end, new HashSet<>());
     }
 
-    private static boolean validPathList(int n, List<List<Integer>> edges, int start, int end, Set<Integer> visited) {
+    private static boolean validPathList(
+            int n, List<List<Integer>> edges, int start, int end, Set<Integer> visited) {
         // If we've found the target node, there is a valid path
         if (start == end) return true;
 
@@ -348,7 +354,8 @@ public class GraphSolutions {
         return validPathMatrix(n, edges, start, end, new HashSet<>());
     }
 
-    private static boolean validPathMatrix(int n, boolean[][] edges, int start, int end, Set<Integer> visited) {
+    private static boolean validPathMatrix(
+            int n, boolean[][] edges, int start, int end, Set<Integer> visited) {
         // If we've found the target node, there is a valid path
         if (start == end) return true;
 
@@ -391,7 +398,7 @@ public class GraphSolutions {
         nodeDepth.put(start, 1);
 
         // Do our BFS
-        while(!toVisit.isEmpty()) {
+        while (!toVisit.isEmpty()) {
             int curr = toVisit.remove();
 
             // If we found the destination, return depth
@@ -405,7 +412,7 @@ public class GraphSolutions {
 
                     // The distance to any node is the distance to the previous
                     // node + 1
-                    nodeDepth.put(e, nodeDepth.get(curr)+1);
+                    nodeDepth.put(e, nodeDepth.get(curr) + 1);
                 }
             }
         }
@@ -435,7 +442,7 @@ public class GraphSolutions {
         previousNodeInPath.put(start, null);
 
         // Traverse until we visit all the nodes or we find our target node
-        while(!toVisit.isEmpty()) {
+        while (!toVisit.isEmpty()) {
             // If the current node is our target, we can stop searching
             int curr = toVisit.remove();
             if (curr == end) break;
@@ -479,7 +486,7 @@ public class GraphSolutions {
         List<List<Integer>> result = new LinkedList<>();
 
         // All paths start with start
-        List<Integer> path = new LinkedList<Integer>(Arrays.asList(new Integer[]{start}));
+        List<Integer> path = new LinkedList<Integer>(Arrays.asList(new Integer[] {start}));
         Set<Integer> visited = new HashSet<>();
         visited.add(start);
 
@@ -489,9 +496,13 @@ public class GraphSolutions {
         return result;
     }
 
-    private static void allPaths(List<List<Integer>> edges, int start, int end,
-                                 Set<Integer> visited, List<List<Integer>> result,
-                                 List<Integer> currPath) {
+    private static void allPaths(
+            List<List<Integer>> edges,
+            int start,
+            int end,
+            Set<Integer> visited,
+            List<List<Integer>> result,
+            List<Integer> currPath) {
         // If we've found a valid path, add it to the results
         if (start == end) {
             // Make sure to make a deep copy of the list
@@ -509,7 +520,7 @@ public class GraphSolutions {
                 allPaths(edges, e, end, visited, result, currPath);
 
                 // Make sure to backtrack
-                currPath.remove(currPath.size()-1);
+                currPath.remove(currPath.size() - 1);
                 visited.remove(e);
             }
         }
@@ -579,7 +590,6 @@ public class GraphSolutions {
             adjList.get(pre[0]).add(pre[1]);
         }
 
-
         // Use a queue (or other list, order doesn't matter) to keep track of
         // which courses don't have any prerequisites
         Queue<Integer> noDependencies = new LinkedList<>();
@@ -622,9 +632,9 @@ public class GraphSolutions {
     public static String alienDictionary(String[] words) {
         // Per Leetcode testcases, ["abcd", "abc"] would be invalid. We
         // specifically check for this edge case here
-        for (int i = 0; i < words.length-1; i++) {
-            if (words[i].length() <= words[i+1].length()) continue;
-            if (prefixEqual(words[i], words[i+1], words[i+1].length())) return "";
+        for (int i = 0; i < words.length - 1; i++) {
+            if (words[i].length() <= words[i + 1].length()) continue;
+            if (prefixEqual(words[i], words[i + 1], words[i + 1].length())) return "";
         }
 
         // Generate a graph of which chars come before which other chars
@@ -677,12 +687,12 @@ public class GraphSolutions {
         // character of the two comes first in lexographical order
         for (int i = 0; i < words.length - 1; i++) {
             // Find the first character that is different
-            for (int j = 0; j < Math.min(words[i].length(), words[i+1].length()); j++) {
-                if (words[i].charAt(j) == words[i+1].charAt(j)) continue;
+            for (int j = 0; j < Math.min(words[i].length(), words[i + 1].length()); j++) {
+                if (words[i].charAt(j) == words[i + 1].charAt(j)) continue;
 
                 // When we find a character that is different, add the dependency
                 // to our adjacency list
-                adjList.get(words[i+1].charAt(j)).add(words[i].charAt(j));
+                adjList.get(words[i + 1].charAt(j)).add(words[i].charAt(j));
                 break;
             }
         }
@@ -733,18 +743,30 @@ public class GraphSolutions {
      * Time Complexity: O(# queries * # variables * # equations)
      * Space Complexity: O(# variables)
      */
-    public static double[] evaluateDivision(List<List<String>> equations, double[] values, List<List<String>> queries) {
+    public static double[] evaluateDivision(
+            List<List<String>> equations, double[] values, List<List<String>> queries) {
         // For each query, do DFS to determine series of operations required
         // to compute the value
         double[] result = new double[queries.size()];
         for (int i = 0; i < result.length; i++) {
-            result[i] = evaluateDivision(equations, values, queries.get(i).get(0), queries.get(i).get(1), new HashSet<>());
+            result[i] =
+                    evaluateDivision(
+                            equations,
+                            values,
+                            queries.get(i).get(0),
+                            queries.get(i).get(1),
+                            new HashSet<>());
         }
         return result;
     }
 
     // Do DFS
-    private static double evaluateDivision(List<List<String>> equations, double[] values, String curr, String dest, Set<String> visited) {
+    private static double evaluateDivision(
+            List<List<String>> equations,
+            double[] values,
+            String curr,
+            String dest,
+            Set<String> visited) {
         // Check if we've already computed a variable
         if (visited.contains(curr)) return -1;
 
@@ -789,7 +811,7 @@ public class GraphSolutions {
         // Since we have a fixed size board, we can explicitly express the
         // valid moves for each possible position of the empty space as well as
         // the win condition
-        int[][] moves = new int[][]{{1,3}, {0,2,4}, {1,5}, {0,4}, {1,3,5}, {2,4}};
+        int[][] moves = new int[][] {{1, 3}, {0, 2, 4}, {1, 5}, {0, 4}, {1, 3, 5}, {2, 4}};
         String solved = "123450";
 
         // We will represent the board as a string because it makes it way
@@ -845,15 +867,14 @@ public class GraphSolutions {
 
     public static void main(String[] args) {
         AdjacencyMatrix am = new AdjacencyMatrix(4);
-        am.addEdge(1,2);
-        am.addEdge(1,3);
+        am.addEdge(1, 2);
+        am.addEdge(1, 3);
         System.out.println(am.neighbors(1));
 
         AdjacencyList al = new AdjacencyList(4);
-        al.addEdge(1,2);
-        al.addEdge(1,3);
+        al.addEdge(1, 2);
+        al.addEdge(1, 3);
         System.out.println(al.neighbors(1));
-
 
         System.out.println(adjacencyMatrixToList(am.matrix));
 
@@ -861,23 +882,24 @@ public class GraphSolutions {
         for (boolean[] m : matrix) System.out.println(Arrays.toString(m));
 
         List<List<Integer>> adjList = new ArrayList<>();
-        adjList.add(new ArrayList<Integer>(Arrays.asList(new Integer[]{1,2})));
-        adjList.add(new ArrayList<Integer>(Arrays.asList(new Integer[]{0})));
-        adjList.add(new ArrayList<Integer>(Arrays.asList(new Integer[]{0})));
-        adjList.add(new ArrayList<Integer>(Arrays.asList(new Integer[]{4,5})));
-        adjList.add(new ArrayList<Integer>(Arrays.asList(new Integer[]{3,5})));
-        adjList.add(new ArrayList<Integer>(Arrays.asList(new Integer[]{3,4})));
+        adjList.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {1, 2})));
+        adjList.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {0})));
+        adjList.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {0})));
+        adjList.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {4, 5})));
+        adjList.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {3, 5})));
+        adjList.add(new ArrayList<Integer>(Arrays.asList(new Integer[] {3, 4})));
         System.out.println(validPathList(6, adjList, 0, 1));
         System.out.println(validPathList(6, adjList, 0, 5));
 
-        boolean[][] adjMatrix = new boolean[][]{
-            {false, true, true, false, false, false},
-            {true, false, false, false, false, false},
-            {true, false, false, false, false, false},
-            {false, false, false, false, true, true},
-            {false, false, false, true, false, true},
-            {false, false, false, true, true, false}
-        };
+        boolean[][] adjMatrix =
+                new boolean[][] {
+                    {false, true, true, false, false, false},
+                    {true, false, false, false, false, false},
+                    {true, false, false, false, false, false},
+                    {false, false, false, false, true, true},
+                    {false, false, false, true, false, true},
+                    {false, false, false, true, true, false}
+                };
 
         System.out.println(validPathMatrix(6, adjMatrix, 0, 1));
         System.out.println(validPathMatrix(6, adjMatrix, 0, 5));
@@ -887,34 +909,37 @@ public class GraphSolutions {
         System.out.println(shortestPath(adjList, 0, 5));
         System.out.println(allPaths(adjList, 0, 5));
 
-        System.out.println(courseScheduling(4, new int[][]{{1,0},{2,0},{3,1},{3,2}}));
+        System.out.println(courseScheduling(4, new int[][] {{1, 0}, {2, 0}, {3, 1}, {3, 2}}));
 
-        System.out.println(Arrays.toString(courseSchedulingII(4, new int[][]{{1,0},{2,0},{3,1},{3,2}})));
+        System.out.println(
+                Arrays.toString(
+                        courseSchedulingII(4, new int[][] {{1, 0}, {2, 0}, {3, 1}, {3, 2}})));
 
-        System.out.println(alienDictionary(new String[]{"wrt", "wrf", "er", "ett", "rftt"}));
-        System.out.println(alienDictionary(new String[]{"ac", "ab", "zc", "zb"}));
+        System.out.println(alienDictionary(new String[] {"wrt", "wrf", "er", "ett", "rftt"}));
+        System.out.println(alienDictionary(new String[] {"ac", "ab", "zc", "zb"}));
 
         List<List<Integer>> rooms = new LinkedList<>();
-        rooms.add(Arrays.asList(new Integer[]{1}));
-        rooms.add(Arrays.asList(new Integer[]{2}));
-        rooms.add(Arrays.asList(new Integer[]{3}));
-        rooms.add(Arrays.asList(new Integer[]{}));
+        rooms.add(Arrays.asList(new Integer[] {1}));
+        rooms.add(Arrays.asList(new Integer[] {2}));
+        rooms.add(Arrays.asList(new Integer[] {3}));
+        rooms.add(Arrays.asList(new Integer[] {}));
         System.out.println(keysAndRooms(rooms));
 
         List<List<String>> equations = new LinkedList<>();
-        equations.add(Arrays.asList(new String[]{"a", "b"}));
-        equations.add(Arrays.asList(new String[]{"b", "c"}));
+        equations.add(Arrays.asList(new String[] {"a", "b"}));
+        equations.add(Arrays.asList(new String[] {"b", "c"}));
 
         List<List<String>> queries = new LinkedList<>();
-        queries.add(Arrays.asList(new String[]{"a", "c"}));
-        queries.add(Arrays.asList(new String[]{"b", "a"}));
-        queries.add(Arrays.asList(new String[]{"a", "e"}));
-        queries.add(Arrays.asList(new String[]{"a", "a"}));
-        queries.add(Arrays.asList(new String[]{"x", "x"}));
+        queries.add(Arrays.asList(new String[] {"a", "c"}));
+        queries.add(Arrays.asList(new String[] {"b", "a"}));
+        queries.add(Arrays.asList(new String[] {"a", "e"}));
+        queries.add(Arrays.asList(new String[] {"a", "a"}));
+        queries.add(Arrays.asList(new String[] {"x", "x"}));
 
-        System.out.println(Arrays.toString(evaluateDivision(equations, new double[]{2.0, 3.0}, queries)));
+        System.out.println(
+                Arrays.toString(evaluateDivision(equations, new double[] {2.0, 3.0}, queries)));
 
-        System.out.println(slidingPuzzle(new int[][]{{1,2,3},{4,0,5}}));
-        System.out.println(slidingPuzzle(new int[][]{{1,2,3},{5,4,0}}));
+        System.out.println(slidingPuzzle(new int[][] {{1, 2, 3}, {4, 0, 5}}));
+        System.out.println(slidingPuzzle(new int[][] {{1, 2, 3}, {5, 4, 0}}));
     }
 }

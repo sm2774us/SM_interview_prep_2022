@@ -319,10 +319,11 @@ public class StackAndQueueSolutions {
             if (Character.isDigit(curr)) {
                 // Get the full number. It can be more than 1 digit
                 int endOfNumber = i;
-                while (endOfNumber+1 < s.length() && Character.isDigit(s.charAt(endOfNumber+1))) {
+                while (endOfNumber + 1 < s.length()
+                        && Character.isDigit(s.charAt(endOfNumber + 1))) {
                     endOfNumber++;
                 }
-                int number = Integer.parseInt(s.substring(i, endOfNumber+1));
+                int number = Integer.parseInt(s.substring(i, endOfNumber + 1));
 
                 // Sign tells us whether to add or subtract the current number
                 sum += number * sign;

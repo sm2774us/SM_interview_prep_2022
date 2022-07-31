@@ -347,7 +347,6 @@ public class LinkedListSolutionsPart2 {
         return false;
     }
 
-
     // We've included some helper methods below that you can use for your tests
 
     // Test method to generate singly linked list with n items
@@ -410,7 +409,6 @@ public class LinkedListSolutionsPart2 {
 
         swapNodes(d, 1, 2);
         printDouble(d);
-
 
         SinglyLinkedListNode l = singleGenerator(4);
         removeOdd(l);

@@ -10,14 +10,12 @@ package com.github.interview_prep.ds_algo_primer.solutions;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
-//import static org.hamcrest.Matchers.containsInAnyOrder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-
 import org.junit.jupiter.api.Test;
 
 public class ArraysAndStringsSolutionsTest {
@@ -31,9 +29,9 @@ public class ArraysAndStringsSolutionsTest {
      */
     @Test
     public void reverseArray() {
-        int[] arr = new int[] { 1, 2, 3, 4, 5 };
+        int[] arr = new int[] {1, 2, 3, 4, 5};
         ArraysAndStringsSolutions.reverseArray(arr);
-        assertThat(arr, equalTo(new int[] { 5, 4, 3, 2, 1 }));
+        assertThat(arr, equalTo(new int[] {5, 4, 3, 2, 1}));
     }
 
     /*
@@ -45,7 +43,8 @@ public class ArraysAndStringsSolutionsTest {
      */
     @Test
     public void removeEven() {
-        assertThat(ArraysAndStringsSolutions.removeEven("iloveinterviewprep"), equalTo("ioenevepe"));
+        assertThat(
+                ArraysAndStringsSolutions.removeEven("iloveinterviewprep"), equalTo("ioenevepe"));
     }
 
     /*
@@ -57,16 +56,16 @@ public class ArraysAndStringsSolutionsTest {
      *
      * Explaining to the interviewer:
      *
-     * By observing the example, we can find the rule to rearrange the string.    
+     * By observing the example, we can find the rule to rearrange the string.
      * Example1: s = "PAYPALISHIRING", numRows = 3
      * Input: s = "PAYPALISHIRING", numRows = 4
      * Output: "PAHNAPLSIIGYIR"
-     * Explanation:    
+     * Explanation:
      *
      * +---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-     * | P | A | Y | P | A | L | I | S | H | I | R | I | N | G | 
+     * | P | A | Y | P | A | L | I | S | H | I | R | I | N | G |
      * +---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-     * | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0 | 1 | 2 | 3 | 
+     * | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0 | 1 | 2 | 3 |
      * +---+---+---+---+---+---+---+---+---+---+---+---+---+---+
      *
      * +---+---+---+---+---+---+---+
@@ -76,9 +75,9 @@ public class ArraysAndStringsSolutionsTest {
      * +---+---+---+---+---+---+---+
      * | Y |   | I |   | R |
      * +---+---+---+---+---+
-     * 
+     *
      * We need to rearrange the string in this way:
-     * 
+     *
      * +----+----+----+----+----+----+----+
      * | 0  |    | 4  |    | 8  |    | 12 |
      * +----+----+----+----+----+----+----+
@@ -87,9 +86,9 @@ public class ArraysAndStringsSolutionsTest {
      * | 2  |    | 6  |    | 10 |    |    |
      * +----+----+----+----+----+----+----+
      *
-     * So we can create an array of StringBuilder, 
+     * So we can create an array of StringBuilder,
      * put the chars in the array vertically down and obliquely up. Like this:
-     * 
+     *
      * +------+----+----+----+----+----+----+----+
      * | sb0: | 0  |    | 4  |    | 8  |    | 12 |
      * +------+----+----+----+----+----+----+----+
@@ -97,16 +96,16 @@ public class ArraysAndStringsSolutionsTest {
      * +------+----+----+----+----+----+----+----+
      * | sb2: | 2  |    | 6  |    | 10 |    |    |
      * +------+----+----+----+----+----+----+----+
-     *    
+     *
      * Example2:
      * Input: s = "PAYPALISHIRING", numRows = 4
      * Output: "PINALSIGYAHRPI"
      * Explanation:
      *
      * +---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-     * | P | A | Y | P | A | L | I | S | H | I | R | I | N | G | 
+     * | P | A | Y | P | A | L | I | S | H | I | R | I | N | G |
      * +---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-     * | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0 | 1 | 2 | 3 | 
+     * | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0 | 1 | 2 | 3 |
      * +---+---+---+---+---+---+---+---+---+---+---+---+---+---+
      *
      * +---+---+---+---+---+---+---+
@@ -118,9 +117,9 @@ public class ArraysAndStringsSolutionsTest {
      * +---+---+---+---+---+---+---+
      * | P |   |   | I |   |   |   |
      * +---+---+---+---+---+---+---+
-     * 
+     *
      * We need to rearrange the string in this way:
-     * 
+     *
      * +----+----+----+----+----+----+----+
      * | 0  |    |    | 6  |    |    | 12 |
      * +----+----+----+----+----+----+----+
@@ -131,9 +130,9 @@ public class ArraysAndStringsSolutionsTest {
      * | 3  |    |    | 9  |    |    |    |
      * +----+----+----+----+----+----+----+
      *
-     * So we can create an array of StringBuilder, 
+     * So we can create an array of StringBuilder,
      * put the chars in the array vertically down and obliquely up. Like this:
-     * 
+     *
      * +------+----+----+----+----+----+----+----+
      * | sb0: | 0  |    |    | 6  |    |    | 12 |
      * +------+----+----+----+----+----+----+----+
@@ -146,7 +145,8 @@ public class ArraysAndStringsSolutionsTest {
      */
     @Test
     public void zigZag() {
-        assertThat(ArraysAndStringsSolutions.zigZag("PAYPALISHIRING", 3), equalTo("PAHNAPLSIIGYIR"));
+        assertThat(
+                ArraysAndStringsSolutions.zigZag("PAYPALISHIRING", 3), equalTo("PAHNAPLSIIGYIR"));
     }
 
     /*
@@ -167,7 +167,12 @@ public class ArraysAndStringsSolutionsTest {
                 matrix[i][j] = val++;
             }
         }
-        assertThat(ArraysAndStringsSolutions.printBackAndForth(matrix), equalTo(new int[] { 1, 2, 3, 4, 5, 10, 9, 8, 7, 6, 11, 12, 13, 14, 15, 20, 19, 18, 17, 16 }));
+        assertThat(
+                ArraysAndStringsSolutions.printBackAndForth(matrix),
+                equalTo(
+                        new int[] {
+                            1, 2, 3, 4, 5, 10, 9, 8, 7, 6, 11, 12, 13, 14, 15, 20, 19, 18, 17, 16
+                        }));
     }
 
     /*
@@ -188,7 +193,12 @@ public class ArraysAndStringsSolutionsTest {
                 matrix[i][j] = val++;
             }
         }
-        assertThat(ArraysAndStringsSolutions.printSpiral(matrix), equalTo(new int[] { 1, 2, 3, 4, 5, 10, 15, 20, 19, 18, 17, 16, 11, 6, 7, 8, 9, 14, 13, 12 }));
+        assertThat(
+                ArraysAndStringsSolutions.printSpiral(matrix),
+                equalTo(
+                        new int[] {
+                            1, 2, 3, 4, 5, 10, 15, 20, 19, 18, 17, 16, 11, 6, 7, 8, 9, 14, 13, 12
+                        }));
     }
 
     /*
@@ -209,7 +219,12 @@ public class ArraysAndStringsSolutionsTest {
                 matrix[i][j] = val++;
             }
         }
-        assertThat(ArraysAndStringsSolutions.printDiagonals(matrix), equalTo(new int[] { 1, 2, 6, 11, 7, 3, 4, 8, 12, 16, 17, 13, 9, 5, 10, 14, 18, 19, 15, 20 }));
+        assertThat(
+                ArraysAndStringsSolutions.printDiagonals(matrix),
+                equalTo(
+                        new int[] {
+                            1, 2, 6, 11, 7, 3, 4, 8, 12, 16, 17, 13, 9, 5, 10, 14, 18, 19, 15, 20
+                        }));
     }
 
     /*
@@ -220,7 +235,9 @@ public class ArraysAndStringsSolutionsTest {
      */
     @Test
     public void printSubstrings() {
-        assertThat(ArraysAndStringsSolutions.printSubstrings("abc"), equalTo(Arrays.asList("a", "ab", "abc", "b", "bc", "c")));
+        assertThat(
+                ArraysAndStringsSolutions.printSubstrings("abc"),
+                equalTo(Arrays.asList("a", "ab", "abc", "b", "bc", "c")));
     }
 
     /*
@@ -232,7 +249,7 @@ public class ArraysAndStringsSolutionsTest {
      */
     @Test
     public void findDuplicates() {
-        assertThat(ArraysAndStringsSolutions.findDuplicates(new int[] { 1, 2, 3, 2 }), equalTo(2));
+        assertThat(ArraysAndStringsSolutions.findDuplicates(new int[] {1, 2, 3, 2}), equalTo(2));
     }
 
     /*
@@ -243,11 +260,13 @@ public class ArraysAndStringsSolutionsTest {
      * Space Complexity: O(1)
      */
     @Test
-    public void twoSum() {      
-        assertThat(ArraysAndStringsSolutions.twoSum(new int[] {1, 2, 3, 4, 5}, 5), equalTo(new int[][]{ { 1, 4 }, { 2, 3 } }));
+    public void twoSum() {
+        assertThat(
+                ArraysAndStringsSolutions.twoSum(new int[] {1, 2, 3, 4, 5}, 5),
+                equalTo(new int[][] {{1, 4}, {2, 3}}));
     }
-    
-        /*
+
+    /*
      * Exercise 2.3: Given a sorted array, find every pair of values in the
      * array that sum up to a given target
      *
@@ -256,45 +275,53 @@ public class ArraysAndStringsSolutionsTest {
      */
     @Test
     public void twoSumLst() {
-        List<int[]> expected = new ArrayList<>() {{
-            add(new int[] { 1, 4 });
-            add(new int[] { 2, 3 });
-        }};
-        List<int[]> actual = ArraysAndStringsSolutions.twoSumLst(new int[] { 1, 2, 3, 4, 5 }, 5);
-        //Collections.sort(actual);
-        //actual.sort(Comparator.comparingInt(el -> el[0]).thenComparingInt(el -> el[1]));
-        Collections.sort(actual, new Comparator<int[]>() {
-            public int compare(int[] a, int[] b) {
-                //if equals
-                if (a[0] - b[0] == 0) {
-                    return a[1] - b[1];
-                }
-                //recompare
-                else {
-                    return a[0] - b[0];
-                }
-            }
-        });
-        
-        //Collections.sort(expected);
-        //expected.sort(Comparator.comparingInt(el -> el[0]).thenComparingInt(el -> el[1]));
-        Collections.sort(expected, new Comparator<int[]>() {
-            public int compare(int[] a, int[] b) {
-                //if equals
-                if (a[0] - b[0] == 0) {
-                    return a[1] - b[1];
-                }
-                //recompare
-                else {
-                    return a[0] - b[0];
-                }
-            }
-        });        
+        List<int[]> expected =
+                new ArrayList<>() {
+                    {
+                        add(new int[] {1, 4});
+                        add(new int[] {2, 3});
+                    }
+                };
+        List<int[]> actual = ArraysAndStringsSolutions.twoSumLst(new int[] {1, 2, 3, 4, 5}, 5);
+        // Collections.sort(actual);
+        // actual.sort(Comparator.comparingInt(el -> el[0]).thenComparingInt(el -> el[1]));
+        Collections.sort(
+                actual,
+                new Comparator<int[]>() {
+                    public int compare(int[] a, int[] b) {
+                        // if equals
+                        if (a[0] - b[0] == 0) {
+                            return a[1] - b[1];
+                        }
+                        // recompare
+                        else {
+                            return a[0] - b[0];
+                        }
+                    }
+                });
+
+        // Collections.sort(expected);
+        // expected.sort(Comparator.comparingInt(el -> el[0]).thenComparingInt(el -> el[1]));
+        Collections.sort(
+                expected,
+                new Comparator<int[]>() {
+                    public int compare(int[] a, int[] b) {
+                        // if equals
+                        if (a[0] - b[0] == 0) {
+                            return a[1] - b[1];
+                        }
+                        // recompare
+                        else {
+                            return a[0] - b[0];
+                        }
+                    }
+                });
         for (int i = 0; i < actual.size(); i++) {
             assertThat(Arrays.equals(actual.get(i), expected.get(i)), equalTo(true));
         }
-        //assertThat(actual, equalTo(expected));
-        //assertThat(ArraysAndStringsSolutions.twoSumLst(new int[] { 1, 2, 3, 4, 5 }, 5), containsInAnyOrder(expected));
+        // assertThat(actual, equalTo(expected));
+        // assertThat(ArraysAndStringsSolutions.twoSumLst(new int[] { 1, 2, 3, 4, 5 }, 5),
+        // containsInAnyOrder(expected));
     }
 
     /*
@@ -305,8 +332,12 @@ public class ArraysAndStringsSolutionsTest {
      */
     @Test
     public void arraysAreEqual() {
-        assertThat(ArraysAndStringsSolutions.arraysAreEqual(new int[] {1, 2, 3}, new int[] {1, 2, 3}), equalTo(true));
-        assertThat(ArraysAndStringsSolutions.arraysAreEqual(new int[] {3, 2, 1}, new int[] {1, 2, 3}), equalTo(false));
+        assertThat(
+                ArraysAndStringsSolutions.arraysAreEqual(new int[] {1, 2, 3}, new int[] {1, 2, 3}),
+                equalTo(true));
+        assertThat(
+                ArraysAndStringsSolutions.arraysAreEqual(new int[] {3, 2, 1}, new int[] {1, 2, 3}),
+                equalTo(false));
     }
 
     /*
@@ -344,9 +375,10 @@ public class ArraysAndStringsSolutionsTest {
      */
     @Test
     public void subarraySums() {
-        assertThat(ArraysAndStringsSolutions.subarraySums(new int[] {1, 2, 3, 4, 5}, 3), equalTo(new int[]{ 6, 9, 12 }));
+        assertThat(
+                ArraysAndStringsSolutions.subarraySums(new int[] {1, 2, 3, 4, 5}, 3),
+                equalTo(new int[] {6, 9, 12}));
     }
-
 
     /*
      * Exercise 4.2: Given a string, find the longest substring of the string
@@ -369,7 +401,9 @@ public class ArraysAndStringsSolutionsTest {
      */
     @Test
     public void findAllAnagrams() {
-        assertThat(ArraysAndStringsSolutions.findAllAnagrams("abcbcba", "abc"), equalTo(Arrays.asList(0,4)));
+        assertThat(
+                ArraysAndStringsSolutions.findAllAnagrams("abcbcba", "abc"),
+                equalTo(Arrays.asList(0, 4)));
     }
 
     /*

@@ -55,7 +55,7 @@ spotless {
         }
         importOrder '\\#', '', '*'
         removeUnusedImports()
-        googleJavaFormat('1.7').aosp()
+        googleJavaFormat('1.11.0').aosp()
         toggleOffOn()
         endWithNewline()
     }
