@@ -468,15 +468,15 @@ public class HeapSolutions {
         m.insert(3);
 
         // System.out.println(isValid(new int[] { 1, 3, 2, 4, 6, 5, 0 }));
-        LOGGER.log(Level.INFO, String.valueOf(isValid(new int[] { 1, 3, 2, 4, 6, 5, 0 })));
+        LOGGER.log(Level.INFO, String.valueOf(isValid(new int[] {1, 3, 2, 4, 6, 5, 0})));
         // System.out.println(isValid(new int[] { 1, 3, 2, 6, 5 }));
-        LOGGER.log(Level.INFO, String.valueOf(isValid(new int[] { 1, 3, 2, 6, 5 })));
+        LOGGER.log(Level.INFO, String.valueOf(isValid(new int[] {1, 3, 2, 6, 5})));
 
         // System.out.println(findMax(new int[] {1, 3, 2, 4, 6, 5, 0}));
         LOGGER.log(Level.INFO, String.valueOf(findMax(new int[] {1, 3, 2, 4, 6, 5, 0})));
 
         // System.out.println(Arrays.toString(heapSort(new int[] { 1, 3, 2, 4, 6, 5, 0 })));
-        LOGGER.log(Level.INFO, Arrays.toString(heapSort(new int[] { 1, 3, 2, 4, 6, 5, 0 })));
+        LOGGER.log(Level.INFO, Arrays.toString(heapSort(new int[] {1, 3, 2, 4, 6, 5, 0})));
 
         KthLargest kth = new KthLargest(3, new int[] {4, 5, 8, 2});
         // System.out.println(kth.add(3));
@@ -484,7 +484,7 @@ public class HeapSolutions {
         // System.out.println(kth.add(5));
         LOGGER.log(Level.INFO, String.valueOf(kth.add(5)));
         // System.out.println(kth.add(10));
-        LOGGER.log(Level.INFO, String.valueOf(kth.add(10)));        
+        LOGGER.log(Level.INFO, String.valueOf(kth.add(10)));
         // System.out.println(kth.add(9));
         LOGGER.log(Level.INFO, String.valueOf(kth.add(9)));
 
@@ -514,13 +514,13 @@ public class HeapSolutions {
         LOGGER.log(Level.INFO, String.valueOf(mf.findMedian()));
         mf.addNum(-3);
         // System.out.println(mf.findMedian());
-        LOGGER.log(Level.INFO, String.valueOf(mf.findMedian()));        
+        LOGGER.log(Level.INFO, String.valueOf(mf.findMedian()));
         mf.addNum(-4);
         // System.out.println(mf.findMedian());
-        LOGGER.log(Level.INFO, String.valueOf(mf.findMedian()));        
+        LOGGER.log(Level.INFO, String.valueOf(mf.findMedian()));
         mf.addNum(-4);
         // System.out.println(mf.findMedian());
-        LOGGER.log(Level.INFO, String.valueOf(mf.findMedian()));        
+        LOGGER.log(Level.INFO, String.valueOf(mf.findMedian()));
 
         ListNode[] lists = new ListNode[3];
         lists[0] = new ListNode(1);

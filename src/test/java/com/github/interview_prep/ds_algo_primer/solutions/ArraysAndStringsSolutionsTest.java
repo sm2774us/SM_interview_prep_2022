@@ -17,7 +17,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-
 import org.junit.jupiter.api.Test;
 
 public class ArraysAndStringsSolutionsTest {
@@ -33,7 +32,7 @@ public class ArraysAndStringsSolutionsTest {
     public void reverseArray() {
         int[] arr = new int[] {1, 2, 3, 4, 5};
         ArraysAndStringsSolutions.reverseArray(arr);
-        assertArrayEquals(new int[] { 5, 4, 3, 2, 1 }, arr);
+        assertArrayEquals(new int[] {5, 4, 3, 2, 1}, arr);
     }
 
     /*
@@ -168,11 +167,8 @@ public class ArraysAndStringsSolutionsTest {
             }
         }
         assertArrayEquals(
-            new int[] {
-                1, 2, 3, 4, 5, 10, 9, 8, 7, 6, 11, 12, 13, 14, 15, 20, 19, 18, 17, 16
-            },
-            ArraysAndStringsSolutions.printBackAndForth(matrix)
-        );
+                new int[] {1, 2, 3, 4, 5, 10, 9, 8, 7, 6, 11, 12, 13, 14, 15, 20, 19, 18, 17, 16},
+                ArraysAndStringsSolutions.printBackAndForth(matrix));
     }
 
     /*
@@ -194,11 +190,8 @@ public class ArraysAndStringsSolutionsTest {
             }
         }
         assertArrayEquals(
-            new int[] {
-                1, 2, 3, 4, 5, 10, 15, 20, 19, 18, 17, 16, 11, 6, 7, 8, 9, 14, 13, 12
-            },
-            ArraysAndStringsSolutions.printSpiral(matrix)
-        );
+                new int[] {1, 2, 3, 4, 5, 10, 15, 20, 19, 18, 17, 16, 11, 6, 7, 8, 9, 14, 13, 12},
+                ArraysAndStringsSolutions.printSpiral(matrix));
     }
 
     /*
@@ -220,11 +213,8 @@ public class ArraysAndStringsSolutionsTest {
             }
         }
         assertArrayEquals(
-            new int[] {
-                1, 2, 6, 11, 7, 3, 4, 8, 12, 16, 17, 13, 9, 5, 10, 14, 18, 19, 15, 20
-            },
-            ArraysAndStringsSolutions.printDiagonals(matrix)
-        );
+                new int[] {1, 2, 6, 11, 7, 3, 4, 8, 12, 16, 17, 13, 9, 5, 10, 14, 18, 19, 15, 20},
+                ArraysAndStringsSolutions.printDiagonals(matrix));
     }
 
     /*
@@ -236,9 +226,8 @@ public class ArraysAndStringsSolutionsTest {
     @Test
     public void printSubstrings() {
         assertIterableEquals(
-            Arrays.asList("a", "ab", "abc", "b", "bc", "c"),
-            ArraysAndStringsSolutions.printSubstrings("abc")
-        );
+                Arrays.asList("a", "ab", "abc", "b", "bc", "c"),
+                ArraysAndStringsSolutions.printSubstrings("abc"));
     }
 
     /*
@@ -262,8 +251,8 @@ public class ArraysAndStringsSolutionsTest {
      */
     @Test
     public void twoSum() {
-        int[][] actual = ArraysAndStringsSolutions.twoSum(new int[] { 1, 2, 3, 4, 5 }, 5);
-        int[][] expected = new int[][] { { 1, 4 }, { 2, 3 } };
+        int[][] actual = ArraysAndStringsSolutions.twoSum(new int[] {1, 2, 3, 4, 5}, 5);
+        int[][] expected = new int[][] {{1, 4}, {2, 3}};
         assertArrayEquals(actual, expected);
     }
 
@@ -327,13 +316,11 @@ public class ArraysAndStringsSolutionsTest {
     @Test
     public void arraysAreEqual() {
         assertEquals(
-    true,
-            ArraysAndStringsSolutions.arraysAreEqual(new int[] { 1, 2, 3 }, new int[] { 1, 2, 3 })
-        );
+                true,
+                ArraysAndStringsSolutions.arraysAreEqual(new int[] {1, 2, 3}, new int[] {1, 2, 3}));
         assertEquals(
-            false,
-            ArraysAndStringsSolutions.arraysAreEqual(new int[] { 3, 2, 1 }, new int[] { 1, 2, 3 })
-        );
+                false,
+                ArraysAndStringsSolutions.arraysAreEqual(new int[] {3, 2, 1}, new int[] {1, 2, 3}));
     }
 
     /*
@@ -372,9 +359,8 @@ public class ArraysAndStringsSolutionsTest {
     @Test
     public void subarraySums() {
         assertArrayEquals(
-            new int[] {6, 9, 12},
-            ArraysAndStringsSolutions.subarraySums(new int[] {1, 2, 3, 4, 5}, 3)
-        );
+                new int[] {6, 9, 12},
+                ArraysAndStringsSolutions.subarraySums(new int[] {1, 2, 3, 4, 5}, 3));
     }
 
     /*
@@ -399,9 +385,7 @@ public class ArraysAndStringsSolutionsTest {
     @Test
     public void findAllAnagrams() {
         assertIterableEquals(
-            Arrays.asList(0, 4),
-            ArraysAndStringsSolutions.findAllAnagrams("abcbcba", "abc")
-        );
+                Arrays.asList(0, 4), ArraysAndStringsSolutions.findAllAnagrams("abcbcba", "abc"));
     }
 
     /*

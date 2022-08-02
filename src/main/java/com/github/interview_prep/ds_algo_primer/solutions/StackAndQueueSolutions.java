@@ -387,13 +387,13 @@ public class StackAndQueueSolutions {
         q.enqueue(3);
         LOGGER.log(Level.INFO, String.valueOf(q.dequeue()));
         q.enqueue(4);
-        LOGGER.log(Level.INFO, String.valueOf(q.dequeue()));        
-        LOGGER.log(Level.INFO, String.valueOf(q.dequeue()));        
+        LOGGER.log(Level.INFO, String.valueOf(q.dequeue()));
+        LOGGER.log(Level.INFO, String.valueOf(q.dequeue()));
         LOGGER.log(Level.INFO, String.valueOf(q.size()));
 
         Stack<Integer> stack = new Stack<>();
         for (int i = 5; i > 0; i--) stack.push(i);
-        LOGGER.log(Level.INFO, String.valueOf(nthElementInStack(stack, 2)));        
+        LOGGER.log(Level.INFO, String.valueOf(nthElementInStack(stack, 2)));
 
         StackFromQueues sfq = new StackFromQueues();
         sfq.push(1);
