@@ -14,8 +14,12 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Stack;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class StackAndQueueSolutions {
+
+    private static final Logger LOGGER = Logger.getLogger(StackAndQueueSolutions.class.getName());
 
     /*
      * Exercise 1.1: Implement a Stack of integers using a Linked List
@@ -371,35 +375,35 @@ public class StackAndQueueSolutions {
         s.push(1);
         s.push(2);
         s.push(3);
-        System.out.println(s.pop());
+        LOGGER.log(Level.INFO, String.valueOf(s.pop()));
         s.push(4);
-        System.out.println(s.pop());
-        System.out.println(s.pop());
-        System.out.println(s.size());
+        LOGGER.log(Level.INFO, String.valueOf(s.pop()));
+        LOGGER.log(Level.INFO, String.valueOf(s.pop()));
+        LOGGER.log(Level.INFO, String.valueOf(s.size()));
 
         MyQueue q = new MyQueue();
         q.enqueue(1);
         q.enqueue(2);
         q.enqueue(3);
-        System.out.println(q.dequeue());
+        LOGGER.log(Level.INFO, String.valueOf(q.dequeue()));
         q.enqueue(4);
-        System.out.println(q.dequeue());
-        System.out.println(q.dequeue());
-        System.out.println(q.size());
+        LOGGER.log(Level.INFO, String.valueOf(q.dequeue()));        
+        LOGGER.log(Level.INFO, String.valueOf(q.dequeue()));        
+        LOGGER.log(Level.INFO, String.valueOf(q.size()));
 
         Stack<Integer> stack = new Stack<>();
         for (int i = 5; i > 0; i--) stack.push(i);
-        System.out.println(nthElementInStack(stack, 2));
+        LOGGER.log(Level.INFO, String.valueOf(nthElementInStack(stack, 2)));        
 
         StackFromQueues sfq = new StackFromQueues();
         sfq.push(1);
         sfq.push(2);
         sfq.push(3);
-        System.out.println(sfq.pop());
-        System.out.println(sfq.top());
+        LOGGER.log(Level.INFO, String.valueOf(sfq.pop()));
+        LOGGER.log(Level.INFO, String.valueOf(sfq.top()));
 
-        System.out.println(validParentheses("([]{}(()))"));
+        LOGGER.log(Level.INFO, String.valueOf(validParentheses("([]{}(()))")));
 
-        System.out.println(basicCalculator("12 - (2 + 3) + 4"));
+        LOGGER.log(Level.INFO, String.valueOf(basicCalculator("12 - (2 + 3) + 4")));
     }
 }

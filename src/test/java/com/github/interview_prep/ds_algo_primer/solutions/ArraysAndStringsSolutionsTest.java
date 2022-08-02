@@ -8,14 +8,16 @@ package com.github.interview_prep.ds_algo_primer.solutions;
  *
  */
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 public class ArraysAndStringsSolutionsTest {
@@ -31,7 +33,7 @@ public class ArraysAndStringsSolutionsTest {
     public void reverseArray() {
         int[] arr = new int[] {1, 2, 3, 4, 5};
         ArraysAndStringsSolutions.reverseArray(arr);
-        assertThat(arr, equalTo(new int[] {5, 4, 3, 2, 1}));
+        assertArrayEquals(new int[] { 5, 4, 3, 2, 1 }, arr);
     }
 
     /*
@@ -43,8 +45,7 @@ public class ArraysAndStringsSolutionsTest {
      */
     @Test
     public void removeEven() {
-        assertThat(
-                ArraysAndStringsSolutions.removeEven("iloveinterviewprep"), equalTo("ioenevepe"));
+        assertEquals("ioenevepe", ArraysAndStringsSolutions.removeEven("iloveinterviewprep"));
     }
 
     /*
@@ -145,8 +146,7 @@ public class ArraysAndStringsSolutionsTest {
      */
     @Test
     public void zigZag() {
-        assertThat(
-                ArraysAndStringsSolutions.zigZag("PAYPALISHIRING", 3), equalTo("PAHNAPLSIIGYIR"));
+        assertEquals("PAHNAPLSIIGYIR", ArraysAndStringsSolutions.zigZag("PAYPALISHIRING", 3));
     }
 
     /*
@@ -167,12 +167,12 @@ public class ArraysAndStringsSolutionsTest {
                 matrix[i][j] = val++;
             }
         }
-        assertThat(
-                ArraysAndStringsSolutions.printBackAndForth(matrix),
-                equalTo(
-                        new int[] {
-                            1, 2, 3, 4, 5, 10, 9, 8, 7, 6, 11, 12, 13, 14, 15, 20, 19, 18, 17, 16
-                        }));
+        assertArrayEquals(
+            new int[] {
+                1, 2, 3, 4, 5, 10, 9, 8, 7, 6, 11, 12, 13, 14, 15, 20, 19, 18, 17, 16
+            },
+            ArraysAndStringsSolutions.printBackAndForth(matrix)
+        );
     }
 
     /*
@@ -193,12 +193,12 @@ public class ArraysAndStringsSolutionsTest {
                 matrix[i][j] = val++;
             }
         }
-        assertThat(
-                ArraysAndStringsSolutions.printSpiral(matrix),
-                equalTo(
-                        new int[] {
-                            1, 2, 3, 4, 5, 10, 15, 20, 19, 18, 17, 16, 11, 6, 7, 8, 9, 14, 13, 12
-                        }));
+        assertArrayEquals(
+            new int[] {
+                1, 2, 3, 4, 5, 10, 15, 20, 19, 18, 17, 16, 11, 6, 7, 8, 9, 14, 13, 12
+            },
+            ArraysAndStringsSolutions.printSpiral(matrix)
+        );
     }
 
     /*
@@ -219,12 +219,12 @@ public class ArraysAndStringsSolutionsTest {
                 matrix[i][j] = val++;
             }
         }
-        assertThat(
-                ArraysAndStringsSolutions.printDiagonals(matrix),
-                equalTo(
-                        new int[] {
-                            1, 2, 6, 11, 7, 3, 4, 8, 12, 16, 17, 13, 9, 5, 10, 14, 18, 19, 15, 20
-                        }));
+        assertArrayEquals(
+            new int[] {
+                1, 2, 6, 11, 7, 3, 4, 8, 12, 16, 17, 13, 9, 5, 10, 14, 18, 19, 15, 20
+            },
+            ArraysAndStringsSolutions.printDiagonals(matrix)
+        );
     }
 
     /*
@@ -235,9 +235,10 @@ public class ArraysAndStringsSolutionsTest {
      */
     @Test
     public void printSubstrings() {
-        assertThat(
-                ArraysAndStringsSolutions.printSubstrings("abc"),
-                equalTo(Arrays.asList("a", "ab", "abc", "b", "bc", "c")));
+        assertIterableEquals(
+            Arrays.asList("a", "ab", "abc", "b", "bc", "c"),
+            ArraysAndStringsSolutions.printSubstrings("abc")
+        );
     }
 
     /*
@@ -249,7 +250,7 @@ public class ArraysAndStringsSolutionsTest {
      */
     @Test
     public void findDuplicates() {
-        assertThat(ArraysAndStringsSolutions.findDuplicates(new int[] {1, 2, 3, 2}), equalTo(2));
+        assertEquals(2, ArraysAndStringsSolutions.findDuplicates(new int[] {1, 2, 3, 2}));
     }
 
     /*
@@ -261,9 +262,9 @@ public class ArraysAndStringsSolutionsTest {
      */
     @Test
     public void twoSum() {
-        assertThat(
-                ArraysAndStringsSolutions.twoSum(new int[] {1, 2, 3, 4, 5}, 5),
-                equalTo(new int[][] {{1, 4}, {2, 3}}));
+        int[][] actual = ArraysAndStringsSolutions.twoSum(new int[] { 1, 2, 3, 4, 5 }, 5);
+        int[][] expected = new int[][] { { 1, 4 }, { 2, 3 } };
+        assertArrayEquals(actual, expected);
     }
 
     /*
@@ -283,8 +284,6 @@ public class ArraysAndStringsSolutionsTest {
                     }
                 };
         List<int[]> actual = ArraysAndStringsSolutions.twoSumLst(new int[] {1, 2, 3, 4, 5}, 5);
-        // Collections.sort(actual);
-        // actual.sort(Comparator.comparingInt(el -> el[0]).thenComparingInt(el -> el[1]));
         Collections.sort(
                 actual,
                 new Comparator<int[]>() {
@@ -300,8 +299,6 @@ public class ArraysAndStringsSolutionsTest {
                     }
                 });
 
-        // Collections.sort(expected);
-        // expected.sort(Comparator.comparingInt(el -> el[0]).thenComparingInt(el -> el[1]));
         Collections.sort(
                 expected,
                 new Comparator<int[]>() {
@@ -317,11 +314,8 @@ public class ArraysAndStringsSolutionsTest {
                     }
                 });
         for (int i = 0; i < actual.size(); i++) {
-            assertThat(Arrays.equals(actual.get(i), expected.get(i)), equalTo(true));
+            assertArrayEquals(expected.get(i), actual.get(i));
         }
-        // assertThat(actual, equalTo(expected));
-        // assertThat(ArraysAndStringsSolutions.twoSumLst(new int[] { 1, 2, 3, 4, 5 }, 5),
-        // containsInAnyOrder(expected));
     }
 
     /*
@@ -332,12 +326,14 @@ public class ArraysAndStringsSolutionsTest {
      */
     @Test
     public void arraysAreEqual() {
-        assertThat(
-                ArraysAndStringsSolutions.arraysAreEqual(new int[] {1, 2, 3}, new int[] {1, 2, 3}),
-                equalTo(true));
-        assertThat(
-                ArraysAndStringsSolutions.arraysAreEqual(new int[] {3, 2, 1}, new int[] {1, 2, 3}),
-                equalTo(false));
+        assertEquals(
+    true,
+            ArraysAndStringsSolutions.arraysAreEqual(new int[] { 1, 2, 3 }, new int[] { 1, 2, 3 })
+        );
+        assertEquals(
+            false,
+            ArraysAndStringsSolutions.arraysAreEqual(new int[] { 3, 2, 1 }, new int[] { 1, 2, 3 })
+        );
     }
 
     /*
@@ -349,8 +345,8 @@ public class ArraysAndStringsSolutionsTest {
      */
     @Test
     public void stringsAreOpposite() {
-        assertThat(ArraysAndStringsSolutions.stringsAreOpposite("abcd", "dcba"), equalTo(true));
-        assertThat(ArraysAndStringsSolutions.stringsAreOpposite("abc", "dbc"), equalTo(false));
+        assertEquals(true, ArraysAndStringsSolutions.stringsAreOpposite("abcd", "dcba"));
+        assertEquals(false, ArraysAndStringsSolutions.stringsAreOpposite("abc", "dbc"));
     }
 
     /*
@@ -362,9 +358,9 @@ public class ArraysAndStringsSolutionsTest {
      */
     @Test
     public void areAnagrams() {
-        assertThat(ArraysAndStringsSolutions.areAnagrams("abcd", "dcba"), equalTo(true));
-        assertThat(ArraysAndStringsSolutions.areAnagrams("abc", "bac"), equalTo(true));
-        assertThat(ArraysAndStringsSolutions.areAnagrams("abc", "dbc"), equalTo(false));
+        assertEquals(true, ArraysAndStringsSolutions.areAnagrams("abcd", "dcba"));
+        assertEquals(true, ArraysAndStringsSolutions.areAnagrams("abc", "bac"));
+        assertEquals(false, ArraysAndStringsSolutions.areAnagrams("abc", "dbc"));
     }
 
     /*
@@ -375,9 +371,10 @@ public class ArraysAndStringsSolutionsTest {
      */
     @Test
     public void subarraySums() {
-        assertThat(
-                ArraysAndStringsSolutions.subarraySums(new int[] {1, 2, 3, 4, 5}, 3),
-                equalTo(new int[] {6, 9, 12}));
+        assertArrayEquals(
+            new int[] {6, 9, 12},
+            ArraysAndStringsSolutions.subarraySums(new int[] {1, 2, 3, 4, 5}, 3)
+        );
     }
 
     /*
@@ -389,7 +386,7 @@ public class ArraysAndStringsSolutionsTest {
      */
     @Test
     public void noRepeatedChars() {
-        assertThat(ArraysAndStringsSolutions.noRepeatedChars("abcdbaba"), equalTo(4));
+        assertEquals(4, ArraysAndStringsSolutions.noRepeatedChars("abcdbaba"));
     }
 
     /*
@@ -401,9 +398,10 @@ public class ArraysAndStringsSolutionsTest {
      */
     @Test
     public void findAllAnagrams() {
-        assertThat(
-                ArraysAndStringsSolutions.findAllAnagrams("abcbcba", "abc"),
-                equalTo(Arrays.asList(0, 4)));
+        assertIterableEquals(
+            Arrays.asList(0, 4),
+            ArraysAndStringsSolutions.findAllAnagrams("abcbcba", "abc")
+        );
     }
 
     /*
@@ -415,6 +413,6 @@ public class ArraysAndStringsSolutionsTest {
      */
     @Test
     public void smallestSubstring() {
-        assertThat(ArraysAndStringsSolutions.smallestSubstring("aabbccdd", "abc"), equalTo("abbc"));
+        assertEquals("abbc", ArraysAndStringsSolutions.smallestSubstring("aabbccdd", "abc"));
     }
 }

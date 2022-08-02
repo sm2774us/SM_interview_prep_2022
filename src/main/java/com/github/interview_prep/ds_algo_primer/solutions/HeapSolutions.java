@@ -14,8 +14,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.PriorityQueue;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class HeapSolutions {
+
+    private static final Logger LOGGER = Logger.getLogger(HeapSolutions.class.getName());
 
     /*
      * Exercise 1.1: Implement a min heap
@@ -454,48 +458,69 @@ public class HeapSolutions {
         m.insert(2);
         m.insert(1);
         m.insert(-1);
-        System.out.println(m);
-        System.out.println(m.pop());
-        System.out.println(m);
+        // System.out.println(m);
+        LOGGER.log(Level.INFO, m.toString());
+        // System.out.println(m.pop());
+        LOGGER.log(Level.INFO, String.valueOf(m.pop()));
+        // System.out.println(m);
+        LOGGER.log(Level.INFO, m.toString());
         m.insert(6);
         m.insert(3);
-        System.out.println(m);
 
-        System.out.println(isValid(new int[] {1, 3, 2, 4, 6, 5, 0}));
-        System.out.println(isValid(new int[] {1, 3, 2, 6, 5}));
+        // System.out.println(isValid(new int[] { 1, 3, 2, 4, 6, 5, 0 }));
+        LOGGER.log(Level.INFO, String.valueOf(isValid(new int[] { 1, 3, 2, 4, 6, 5, 0 })));
+        // System.out.println(isValid(new int[] { 1, 3, 2, 6, 5 }));
+        LOGGER.log(Level.INFO, String.valueOf(isValid(new int[] { 1, 3, 2, 6, 5 })));
 
-        System.out.println(findMax(new int[] {1, 3, 2, 4, 6, 5, 0}));
+        // System.out.println(findMax(new int[] {1, 3, 2, 4, 6, 5, 0}));
+        LOGGER.log(Level.INFO, String.valueOf(findMax(new int[] {1, 3, 2, 4, 6, 5, 0})));
 
-        System.out.println(Arrays.toString(heapSort(new int[] {1, 3, 2, 4, 6, 5, 0})));
+        // System.out.println(Arrays.toString(heapSort(new int[] { 1, 3, 2, 4, 6, 5, 0 })));
+        LOGGER.log(Level.INFO, Arrays.toString(heapSort(new int[] { 1, 3, 2, 4, 6, 5, 0 })));
 
         KthLargest kth = new KthLargest(3, new int[] {4, 5, 8, 2});
-        System.out.println(kth.add(3));
-        System.out.println(kth.add(5));
-        System.out.println(kth.add(10));
-        System.out.println(kth.add(9));
+        // System.out.println(kth.add(3));
+        LOGGER.log(Level.INFO, String.valueOf(kth.add(3)));
+        // System.out.println(kth.add(5));
+        LOGGER.log(Level.INFO, String.valueOf(kth.add(5)));
+        // System.out.println(kth.add(10));
+        LOGGER.log(Level.INFO, String.valueOf(kth.add(10)));        
+        // System.out.println(kth.add(9));
+        LOGGER.log(Level.INFO, String.valueOf(kth.add(9)));
 
         int[][] points = new int[][] {new int[] {3, 3}, new int[] {5, -1}, new int[] {-2, 4}};
         int[][] closest = kClosest(points, 2);
-        for (int[] point : closest) System.out.println(Arrays.toString(point));
+        // for (int[] point : closest) System.out.println(Arrays.toString(point));
+        for (int[] point : closest) {
+            LOGGER.log(Level.INFO, Arrays.toString(point));
+        }
 
         MedianFinder mf = new MedianFinder();
         mf.addNum(1);
         mf.addNum(2);
-        System.out.println(mf.findMedian());
+        // System.out.println(mf.findMedian());
+        LOGGER.log(Level.INFO, String.valueOf(mf.findMedian()));
         mf.addNum(3);
-        System.out.println(mf.findMedian());
+        // System.out.println(mf.findMedian());
+        LOGGER.log(Level.INFO, String.valueOf(mf.findMedian()));
 
         mf = new MedianFinder();
         mf.addNum(-1);
-        System.out.println(mf.findMedian());
+        LOGGER.log(Level.INFO, m.toString());
+        // System.out.println(mf.findMedian());
+        LOGGER.log(Level.INFO, String.valueOf(mf.findMedian()));
         mf.addNum(-2);
-        System.out.println(mf.findMedian());
+        // System.out.println(mf.findMedian());
+        LOGGER.log(Level.INFO, String.valueOf(mf.findMedian()));
         mf.addNum(-3);
-        System.out.println(mf.findMedian());
+        // System.out.println(mf.findMedian());
+        LOGGER.log(Level.INFO, String.valueOf(mf.findMedian()));        
         mf.addNum(-4);
-        System.out.println(mf.findMedian());
+        // System.out.println(mf.findMedian());
+        LOGGER.log(Level.INFO, String.valueOf(mf.findMedian()));        
         mf.addNum(-4);
-        System.out.println(mf.findMedian());
+        // System.out.println(mf.findMedian());
+        LOGGER.log(Level.INFO, String.valueOf(mf.findMedian()));        
 
         ListNode[] lists = new ListNode[3];
         lists[0] = new ListNode(1);
@@ -507,10 +532,18 @@ public class HeapSolutions {
         lists[2] = new ListNode(2);
         lists[2].next = new ListNode(6);
         ListNode head = mergeKLists(lists);
+        // while (head != null) {
+        //     System.out.print(head.val + " -> ");
+        //     head = head.next;
+        // }
+        // System.out.println("null");
+        StringBuilder sb = new StringBuilder();
         while (head != null) {
-            System.out.print(head.val + " -> ");
+            // System.out.print(head.val + " -> ");
+            sb.append(head.val + " -> ");
             head = head.next;
         }
-        System.out.println("null");
+        sb.append("null");
+        LOGGER.log(Level.INFO, sb.toString());
     }
 }
