@@ -74,7 +74,6 @@ public class ArraysAndStringsSolutions {
      *
      * By observing the example, we can find the rule to rearrange the string.
      * Example1: s = "PAYPALISHIRING", numRows = 3
-     * Input: s = "PAYPALISHIRING", numRows = 4
      * Output: "PAHNAPLSIIGYIR"
      * Explanation:
      *
@@ -193,7 +192,15 @@ public class ArraysAndStringsSolutions {
      * Time Complexity: O(arr.length * arr[0].length), or,
      *                  O(R*C) [ where R = number of rows,
      *                                 C = number of columns ]
+     *
+     * [ if asked to just print the values of the int array ]
+     * ------------------------------------------------------
      * Space Complexity: O(1)
+     * [ if asked to return the int array as output ]
+     * ------------------------------------------------------
+     * Space Complexity: O(arr.length * arr[0].length), or,
+     *                   O(R*C) [ where R = number of rows,
+     *                                 C = number of columns ]
      */
     public static int[] printBackAndForth(int[][] arr) {
         int[] result = new int[arr.length * arr[0].length];
@@ -228,7 +235,14 @@ public class ArraysAndStringsSolutions {
      * Time Complexity: O(arr.length * arr[0].length), or,
      *                  O(R*C) [ where R = number of rows,
      *                                 C = number of columns ]
+     * [ if asked to just print the values of the int array ]
+     * ------------------------------------------------------
      * Space Complexity: O(1)
+     * [ if asked to return the int array as output ]
+     * ------------------------------------------------------
+     * Space Complexity: O(arr.length * arr[0].length), or,
+     *                   O(R*C) [ where R = number of rows,
+     *                                 C = number of columns ]
      */
     public static int[] printSpiral(int[][] arr) {
         int[] result = new int[arr.length * arr[0].length];
@@ -241,7 +255,7 @@ public class ArraysAndStringsSolutions {
         int counter = 0;
 
         // Once the mins and maxes converge, we are at the center of the spiral.
-        // The spiral follows a fixed set of steps. We go left, down, right, up.
+        // The spiral follows a fixed set of steps. We go right, down, left, up.
         // For each of these, we just interate to the bounds, so we express each
         // one explicitly.
         while (minRow < maxRow && minCol < maxCol) {
@@ -291,7 +305,14 @@ public class ArraysAndStringsSolutions {
      * Time Complexity: O(arr.length * arr[0].length), or,
      *                  O(R*C) [ where R = number of rows,
      *                                 C = number of columns ]
+     * [ if asked to just print the values of the int array ]
+     * ------------------------------------------------------
      * Space Complexity: O(1)
+     * [ if asked to return the int array as output ]
+     * ------------------------------------------------------
+     * Space Complexity: O(arr.length * arr[0].length), or,
+     *                   O(R*C) [ where R = number of rows,
+     *                                 C = number of columns ]
      */
     public static int[] printDiagonals(int[][] arr) {
         int[] result = new int[arr.length * arr[0].length];
@@ -357,7 +378,12 @@ public class ArraysAndStringsSolutions {
      * Exercise 2.1: Given a string, print out all of the substrings
      *
      * Time Complexity: O(s.length()^2)
+     * [ if asked to just print the values of the int array ]
+     * ------------------------------------------------------
      * Space Complexity: O(1)
+     * [ if asked to return the int array as output ]
+     * ------------------------------------------------------
+     * Space Complexity: O(s.length()^2)
      */
     public static List<String> printSubstrings(String s) {
         List<String> result = new ArrayList<>();
